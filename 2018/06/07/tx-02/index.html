@@ -5,15 +5,20 @@
   
 
   
-  <title>Hexo</title>
+  <title>线上回滚笔记-02 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="DSN(Data source name)  初探​    最近的服务需要到MySql中进行增删查改，数据库一直是自己的弱项，碰巧这个机会，好好补补这方面的知识点。第一步，链接数据库的地址，ip地址、端口、账号、密码和数据库名都给你了，怎么去组织这些字段，当然google都会有答案，更好的方式是彻底的理解。 ​    维基百科(https://en.wikipedia.org/wiki/Data_">
+<meta name="keywords" content="MySql, DSN(Data source name)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线上回滚笔记-02">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/tx-02/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DSN(Data source name)  初探​    最近的服务需要到MySql中进行增删查改，数据库一直是自己的弱项，碰巧这个机会，好好补补这方面的知识点。第一步，链接数据库的地址，ip地址、端口、账号、密码和数据库名都给你了，怎么去组织这些字段，当然google都会有答案，更好的方式是彻底的理解。 ​    维基百科(https://en.wikipedia.org/wiki/Data_">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-13T17:09:51.317Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="线上回滚笔记-02">
+<meta name="twitter:description" content="DSN(Data source name)  初探​    最近的服务需要到MySql中进行增删查改，数据库一直是自己的弱项，碰巧这个机会，好好补补这方面的知识点。第一步，链接数据库的地址，ip地址、端口、账号、密码和数据库名都给你了，怎么去组织这些字段，当然google都会有答案，更好的方式是彻底的理解。 ​    维基百科(https://en.wikipedia.org/wiki/Data_">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,133 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-tx-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/07/tx-01/" class="article-date">
-  <time datetime="2018-06-07T15:54:33.000Z" itemprop="datePublished">2018-06-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/07/tx-01/">线上回滚笔记-01</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux-常用shell-指令"><a href="#Linux-常用shell-指令" class="headerlink" title="Linux 常用shell 指令"></a>Linux 常用shell 指令</h2><p>​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。</p>
-<ul>
-<li><h4 id="线上服务更新Shell指令"><a href="#线上服务更新Shell指令" class="headerlink" title="线上服务更新Shell指令"></a>线上服务更新Shell指令</h4></li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line">svr=`ps aux |grep <span class="string">'sso_proxy'</span> |grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span> |wc -l`</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$svr</span> -eq 0 ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> /etc/profile</span><br><span class="line"> 	/usr/<span class="built_in">local</span>/services/TSF3-PHP7-1.0/runtime/php/bin/php /data/web_deployment/svr/tsf2/sso_proxy_tcp/Start.php &amp;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    ps aux |grep <span class="string">'sso_proxy_tcp-master'</span> |grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span> | xargs  <span class="built_in">kill</span> -15</span><br><span class="line">    sleep 1</span><br><span class="line">    /usr/<span class="built_in">local</span>/services/TSF3-PHP7-1.0/runtime/php/bin/php /data/web_deployment/svr/tsf2/sso_proxy_tcp/Start.php &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>ps–Process Status(查看进程状态指令)</p>
-<ul>
-<li>ps aux 是常用指令兼容的效果比较高，使用BSD syntax显示所有进程的状态<ul>
-<li>ax一起使用是列出所有的状态</li>
-<li>u 做格式命令出现，表示输出采用面上用户的格式 </li>
-<li>兼容性比较好 在mac上一样的输出</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>grep–Global Regular Expression Print (全局正则表达式指令) 并把匹配的行打印出来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [option] pattren file</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>-v  == –revert-match 显示不包含匹配文本的所有行</p>
-</li>
-<li><p>正则</p>
-<blockquote>
-<ul>
-<li>元字符 “ \b”, “.”, “*”, “\d”<ol>
-<li>\bhi\b.*\bLucy\b 匹配hi单词 后不远有单词Lucy</li>
-<li>0\d{2}-\d{8} 匹配0后面2个数字 + 连字符 + 后面8位数字</li>
-</ol>
-</li>
-<li>常用的元字符 “^ 字符串的开始”、”$ 字符串的结束”、”\w 匹配数字或字母或下划线”、”\s 匹配任意空白符”、”. 匹配除换行符的任意字符”、 <ol>
-<li>^\d{5,8}$ 匹配5到8位长度的字符串</li>
-</ol>
-</li>
-<li>字符转义 –  www\.\.com = www..com</li>
-<li>重复 –  * 重复0次或多次| + 重复1次或多次| ?  重复0次或1次|{n}重复那次| {n,} 重复n次或者更多 |{n,m}重读n次到m次<ol>
-<li>Window\d+</li>
-<li>^\w+</li>
-</ol>
-</li>
-<li>字符集 – 建立自己的查找字符集进行匹配 [aeiou] 匹配一个元音字符 [.?!]匹配三个符号的任意一个 [0-9]等同于\d，[a-z0-9A-Z_]等同于\w<ol>
-<li>(?0\d{2}[) -]?\d{8} </li>
-</ol>
-</li>
-<li>分支条件–用|把不同的规则分隔开<ol>
-<li>0\d{2}-\d{8}|0\d{3}-\d{7}</li>
-<li>\(0\d{2}\)[-]?\d(8)|0\d{2}[-]?\d{8}</li>
-</ol>
-</li>
-<li>分组规则–重复多个字符，用小括号指定子表达式，然后指定子表达式的重复次数<ol>
-<li>(\d{1,3}\.){3}\d{1,3} ip地址的匹配格式，但存在不可能的IP地址</li>
-<li>((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}</li>
-</ol>
-</li>
-<li>反义– 查找不属于某个简单定义的字符类的字符 [\^x] 匹配除了x以外的任意字符[\^aeiou]匹配除了aeiou几个字符外的字符<ol>
-<li>\S+ 匹配不包含空白符的字符串 </li>
-<li>&lt;a/[/^-]+&gt;</li>
-</ol>
-</li>
-<li>后向引用 – <strong>匹配这个子表达式的文本</strong>(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理，后向引用用于重复搜索前面某个分组匹配的文本。例如，\1代表分组1匹配的文本。</li>
-<li>零宽断言 – 用于指定一个位置，这个位置应该满足一定的条件<ol>
-<li>\b\w+(?=ing\b) 用于匹配以ing结尾的ing前面的一部分<br> .  (?&lt;=\bre)\w+\b 用于匹配re开头的单词的后一部分    </li>
-</ol>
-</li>
-</ul>
-</blockquote>
-</li>
-<li><p>-h 只显示抓出来的行的内容，不显示文件名</p>
-</li>
-<li><p>-e 指定pattern</p>
-</li>
-<li><p>-l  只显示抓到指定模式内容的文件名</p>
-</li>
-<li><p>-n 显示抓到的文件的行数</p>
-</li>
-</ul>
-</li>
-<li><p>tcpdump — 抓包， 抓取网络中的通信包</p>
-<ol>
-<li>tcp ucp 指定抓包的类型</li>
-<li>host port 指定抓包的host或者端口号port</li>
-<li>-X 指定打印包的格式 详细的包内容</li>
-<li>-i  指定网卡</li>
-</ol>
-<p>​    </p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/07/tx-01/" data-id="cjik0zrzf0000glcbe9s02z6j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Git/">Linux, Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tx-02" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-tx-02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/07/tx-02/" class="article-date">
   <time datetime="2018-06-07T15:54:33.000Z" itemprop="datePublished">2018-06-07</time>
@@ -199,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/07/tx-02/">线上回滚笔记-02</a>
+    <h1 class="article-title" itemprop="name">
+      线上回滚笔记-02
     </h1>
   
 
@@ -235,56 +114,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/07/hello-world/" class="article-date">
-  <time datetime="2018-06-07T15:27:50.449Z" itemprop="datePublished">2018-06-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2018/06/07/tx-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          线上回滚笔记-01
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/07/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2018/06/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/07/hello-world/" data-id="cjik0zrzm0001glcbzuf56e5t" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
