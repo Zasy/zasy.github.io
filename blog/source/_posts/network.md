@@ -1,3 +1,8 @@
+---
+title: 'Optical Noc Thermal Aware Power Model'
+date: 2018-08-15 11:44:02
+tags: Noc
+---
 To the research of thermal-aware routing algorithm for optical NoC，a traffic-thermal co-simulation platform is necessary. The traditional optical NoC simulator gets the temperature distribution at first , then simulates the thermal-aware traffic activities. But more NoC simulators adopts the traffic-thermal co-simulation platform which is proposed by **Shang et al.[5].** Traffic-thermal co-simulation network platform for NoC integrated the traffic of network, power model and thermal model. During the simulation, the NoC simulator do traffic activities with the adaptive routing algorithm. The power model generate the power consumption based on the traffic activites, which is a power trace file. Thermal model gets the power trace infoomation. The thermal model updates temprature dsitributions with the given power trace file.   So the thermal-aware adaptive routing algorithm adjust the network traffic based on the newer temprature distributions of the optical NoC system.
 
 We proposed a traffic-thermal co-simulation platform for the research of thermal-aware routing algorithm for optical NoC.
