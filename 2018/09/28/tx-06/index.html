@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Golang, Algorithm, Database" />
+  <meta name="keywords" content="BOM," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="回滚即使成长, 更高的要求是对极致和细节的追求">
-<meta property="og:type" content="website">
-<meta property="og:title" content="线上回滚日记 TEST">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="Golang - Read a UTF-8 text file with BOM背景开发中遇到一个上传文件的需求，通过规定上传的文件会将账号按行排列。 Bug复现为，当上传的文件是excel (Win)系产品导出的文件时，会在文首解析出不可显的字符，导致后端在解析时会校验错误。导致文件上传失败。   用vim -b ./file 打开文件发现了文首的不可见字符 \uFEFF。搜索后才知道这个是UT">
+<meta name="keywords" content="BOM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Read a UTF-8 text file with BOM">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/tx-06/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
-<meta property="og:description" content="回滚即使成长, 更高的要求是对极致和细节的追求">
+<meta property="og:description" content="Golang - Read a UTF-8 text file with BOM背景开发中遇到一个上传文件的需求，通过规定上传的文件会将账号按行排列。 Bug复现为，当上传的文件是excel (Win)系产品导出的文件时，会在文首解析出不可显的字符，导致后端在解析时会校验错误。导致文件上传失败。   用vim -b ./file 打开文件发现了文首的不可见字符 \uFEFF。搜索后才知道这个是UT">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/09/28/tx-06/bugs.png">
+<meta property="og:updated_time" content="2018-09-27T18:04:13.963Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线上回滚日记 TEST">
-<meta name="twitter:description" content="回滚即使成长, 更高的要求是对极致和细节的追求">
+<meta name="twitter:title" content="Golang Read a UTF-8 text file with BOM">
+<meta name="twitter:description" content="Golang - Read a UTF-8 text file with BOM背景开发中遇到一个上传文件的需求，通过规定上传的文件会将账号按行排列。 Bug复现为，当上传的文件是excel (Win)系产品导出的文件时，会在文首解析出不可显的字符，导致后端在解析时会校验错误。导致文件上传失败。   用vim -b ./file 打开文件发现了文首的不可见字符 \uFEFF。搜索后才知道这个是UT">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/28/tx-06/bugs.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/tx-06/"/>
 
 
 
 
 
-  <title>归档 | 线上回滚日记 TEST</title>
+  <title>Golang Read a UTF-8 text file with BOM | 线上回滚日记 TEST</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,370 +285,193 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/tx-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mark Zhan Zha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="线上回滚日记 TEST">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Golang Read a UTF-8 text file with BOM</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T01:18:12+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 9 篇日志。 继续努力。
-      </span>
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h2 id="Golang-Read-a-UTF-8-text-file-with-BOM"><a href="#Golang-Read-a-UTF-8-text-file-with-BOM" class="headerlink" title="Golang - Read a UTF-8 text file with BOM"></a>Golang - Read a UTF-8 text file with BOM</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>开发中遇到一个上传文件的需求，通过规定上传的文件会将账号按行排列。 Bug复现为，当上传的文件是excel (Win)系产品导出的文件时，会在文首解析出不可显的字符，导致后端在解析时会校验错误。导致文件上传失败。 </p>
+<p><img src="/2018/09/28/tx-06/bugs.png" alt="bugs"></p>
+<p>用<code>vim -b ./file</code> 打开文件发现了文首的不可见字符 <code>\uFEFF</code>。搜索后才知道这个是UTF编码自带的编码顺序标记。所以本文接下来分别介绍下，1. BOM的详细信息，2. 以及我在golang的服务中是怎么处理这种兼容的状况的。</p>
+<h4 id="BOM-bytes-order-marker"><a href="#BOM-bytes-order-marker" class="headerlink" title="BOM (bytes order marker)"></a>BOM (bytes order marker)</h4><p>From <a href="http://en.wikipedia.org/wiki/Byte_order_mark" target="_blank" rel="noopener">Wikipedia</a>, the byte order mark (BOM) is a Unicode character used to signal the endianness (byte order) of a text file or stream. It’s code point is U+FEFF. BOM use is optional, and, if used, should appear at the start of the text stream. 引用阮一峰老师的一段话：</p>
+<blockquote>
+<p>Unicode编码中表示字节排列顺序的那个文件头，叫做BOM（byte-order mark），FFFE和FEFF就是不同的BOM。</p>
+<p>UTF-8文件的BOM是“EF BB BF”，但是UTF-8的字节顺序是不变的，因此这个文件头实际上不起作用。有一些编程语言是ISO-8859-1编码，所以如果用UTF-8针对这些语言编程序，就必须去掉BOM，即保存成“UTF-8—无BOM”的格式才可以，PHP语言就是这样。</p>
+</blockquote>
+<h4 id="big-endian-and-little-endian"><a href="#big-endian-and-little-endian" class="headerlink" title="big endian and little endian"></a>big endian and little endian</h4><p>对于大端模式和小端模式自己之前一直没弄明白，这里又碰见算是在熟悉一遍。再引用一遍阮老师的话做记忆：</p>
+<blockquote>
+<p>以汉字<code>严</code>为例，Unicode 码是<code>4E25</code>，需要用两个字节存储，一个字节是<code>4E</code>，另一个字节是<code>25</code>。存储的时候，<code>4E</code>在前，<code>25</code>在后，这就是 Big endian 方式；<code>25</code>在前，<code>4E</code>在后，这是 Little endian 方式。</p>
+<p>这两个古怪的名称来自英国作家斯威夫特的《格列佛游记》。在该书中，小人国里爆发了内战，战争起因是人们争论，吃鸡蛋时究竟是从大头(Big-endian)敲开还是从小头(Little-endian)敲开。为了这件事情，前后爆发了六次战争，一个皇帝送了命，另一个皇帝丢了王位。</p>
+<p>第一个字节在前，就是”大头方式”（Big endian），第二个字节在前就是”小头方式”（Little endian）。</p>
+<p>那么很自然的，就会出现一个问题：计算机怎么知道某一个文件到底采用哪一种方式编码？</p>
+<p>Unicode 规范定义，每一个文件的最前面分别加入一个表示编码顺序的字符，这个字符的名字叫做”零宽度非换行空格”（zero width no-break space），用<code>FEFF</code>表示。这正好是两个字节，而且<code>FF</code>比<code>FE</code>大<code>1</code>。</p>
+<p>如果一个文本文件的头两个字节是<code>FE FF</code>，就表示该文件采用大头方式；如果头两个字节是<code>FF FE</code>，就表示该文件采用小头方式。</p>
+</blockquote>
+<p>从大头敲开，自然是先存前面字节再存后面， 从小头敲开自然是先存吃后面字节在吃前面。 这个问题又让自己重新规整了一下在操作系统中的字节序和网络通信中的字节序的不同：</p>
+<ol>
+<li>x86 CPU 一般都是小端字节序</li>
+<li>TCP/IP中规定采取大端字节序</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 判断系统是大端系统还是小端系统</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> x = <span class="number">0x12345678</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (*(<span class="keyword">char</span> *)&amp;x == <span class="number">0x78</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"little-endian.\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (*(<span class="keyword">char</span> *)&amp;x == <span class="number">0x12</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"big-endian\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"confused.\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于系统提供的主机和网络的字节序转换，留坑待填。</p>
+<h4 id="Golang-解决方案"><a href="#Golang-解决方案" class="headerlink" title="Golang 解决方案"></a>Golang 解决方案</h4><p>我们采用的解决方案也比较的简单，就是当发现BOM时，将第一行的BOM给去掉。代码上使用了golang的strings去替换。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bufio"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// FEFF because this is the Unicode char represented by the UTF-8 byte order mark (EF BB BF)</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">	b, err := os.Open(<span class="string">"./src/puin.csv"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	scanner := bufio.NewScanner(b)</span><br><span class="line">	</span><br><span class="line">	scanner.Scan()</span><br><span class="line">	firstline := scanner.Text()</span><br><span class="line">	firstline = strings.Replace(firstline, <span class="string">"\uFEFF"</span>, <span class="string">""</span>, <span class="number">-1</span>)</span><br><span class="line">	fmt.Println(firstline)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> scanner.Scan()  &#123;</span><br><span class="line">		data := scanner.Text()</span><br><span class="line">		fmt.Println(data)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然也有一些更通用的方案在Java的生态环境。The <a href="http://commons.apache.org/io/api-release/org/apache/commons/io/input/BOMInputStream.html" target="_blank" rel="noopener">Apache IO Commons</a> provides some tools to handle this situation. The BOMInputStream class detects the BOM and, if required, can automatically skip it and return the subsequent byte as the first byte in the stream. 这里就不再赘述，先睡了。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BOM/" rel="tag"># BOM</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/tx-06/" itemprop="url">
-              
-                <span itemprop="name">Golang Read a UTF-8 text file with BOM</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T01:18:12+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T01:17:38+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/network/" itemprop="url">
-              
-                <span itemprop="name">Optical Noc Thermal Aware Power Model</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T11:44:02+08:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/2018-08-14/" itemprop="url">
-              
-                <span itemprop="name">Hbase 的基础理解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T11:45:02+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/02/tx-05/" itemprop="url">
-              
-                <span itemprop="name">协程间的通道 -- 线上回滚日记(5)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-02T10:42:21+08:00"
-              content="2018-07-02" >
-          07-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/22/tx-4/" itemprop="url">
-              
-                <span itemprop="name">tx-4</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-22T22:05:18+08:00"
-              content="2018-06-22" >
-          06-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/22/tx-3/" itemprop="url">
-              
-                <span itemprop="name">regex in Golang -线上回滚日记 3</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-22T01:34:35+08:00"
-              content="2018-06-22" >
-          06-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/07/tx-01/" itemprop="url">
-              
-                <span itemprop="name">线上回滚笔记-01</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-07T23:54:33+08:00"
-              content="2018-06-07" >
-          06-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/07/tx-02/" itemprop="url">
-              
-                <span itemprop="name">线上回滚笔记-02</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-07T23:54:33+08:00"
-              content="2018-06-07" >
-          06-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -652,6 +479,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -672,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -744,6 +584,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Golang-Read-a-UTF-8-text-file-with-BOM"><span class="nav-number">1.</span> <span class="nav-text">Golang - Read a UTF-8 text file with BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.0.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BOM-bytes-order-marker"><span class="nav-number">1.0.2.</span> <span class="nav-text">BOM (bytes order marker)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#big-endian-and-little-endian"><span class="nav-number">1.0.3.</span> <span class="nav-text">big endian and little endian</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Golang-解决方案"><span class="nav-number">1.0.4.</span> <span class="nav-text">Golang 解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">1.0.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -910,6 +766,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
