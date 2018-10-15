@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Noc," />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="To the research of thermal-aware routing algorithm for optical NoC，a traffic-thermal co-simulation platform is necessary. The traditional optical NoC simulator gets the temperature distribution at fir">
-<meta name="keywords" content="Noc">
+<meta name="description" content="海量数据处理TopN的问题 海量数据中找到重复次数最多的一个">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optical Noc Thermal Aware Power Model">
-<meta property="og:url" content="http://yoursite.com/2018/08/15/network/index.html">
+<meta property="og:title" content="数据机构与算法">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/tx-09/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
-<meta property="og:description" content="To the research of thermal-aware routing algorithm for optical NoC，a traffic-thermal co-simulation platform is necessary. The traditional optical NoC simulator gets the temperature distribution at fir">
+<meta property="og:description" content="海量数据处理TopN的问题 海量数据中找到重复次数最多的一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T02:40:15.389Z">
+<meta property="og:updated_time" content="2018-10-15T08:28:19.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Optical Noc Thermal Aware Power Model">
-<meta name="twitter:description" content="To the research of thermal-aware routing algorithm for optical NoC，a traffic-thermal co-simulation platform is necessary. The traditional optical NoC simulator gets the temperature distribution at fir">
+<meta name="twitter:title" content="数据机构与算法">
+<meta name="twitter:description" content="海量数据处理TopN的问题 海量数据中找到重复次数最多的一个">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/15/network/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/04/tx-09/"/>
 
 
 
 
 
-  <title>Optical Noc Thermal Aware Power Model | 线上回滚日记 TEST</title>
+  <title>数据机构与算法 | 线上回滚日记 TEST</title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/network/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mark Zhan Zha">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Optical Noc Thermal Aware Power Model</h1>
+          <h1 class="post-title" itemprop="name headline">数据机构与算法</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T11:44:02+08:00">
-                2018-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T19:08:13+08:00">
+                2018-10-04
               </time>
             
 
@@ -369,16 +369,8 @@
       
 
       
-        <p>To the research of thermal-aware routing algorithm for optical NoC，a traffic-thermal co-simulation platform is necessary. The traditional optical NoC simulator gets the temperature distribution at first , then simulates the thermal-aware traffic activities. But more NoC simulators adopts the traffic-thermal co-simulation platform which is proposed by <strong>Shang et al.[5].</strong> Traffic-thermal co-simulation network platform for NoC integrated the traffic of network, power model and thermal model. During the simulation, the NoC simulator do traffic activities with the adaptive routing algorithm. The power model generate the power consumption based on the traffic activites, which is a power trace file. Thermal model gets the power trace infoomation. The thermal model updates temprature dsitributions with the given power trace file.   So the thermal-aware adaptive routing algorithm adjust the network traffic based on the newer temprature distributions of the optical NoC system.</p>
-<p>We proposed a traffic-thermal co-simulation platform for the research of thermal-aware routing algorithm for optical NoC.</p>
-<h2 id="A-Traffic-thermal-Co-simulation-platform"><a href="#A-Traffic-thermal-Co-simulation-platform" class="headerlink" title="A Traffic-thermal Co-simulation platform"></a>A Traffic-thermal Co-simulation platform</h2><p>The proposed traffic-thermal co-simulaiton platform mainly consist of three parts: the optical network model, the learning based routing model and traffic-thermal co-simulation model. The optical network model is a SystemC-based cycle-accurate network simulator for optical NoC. The learning based routing model is the adaptive routing algorithm we proposed. We also implement a thraffic-thermal co-simulation platform for our optical NoC model. In our proposed work <strong>before[],</strong> we have introduced the optical network model  in detail. So in this section, we will first breify introduce the structure of the learning based routing model which is adopted in the router of network. Then we will describe the structure of traffic-therml co-simulation platform.</p>
-<ol>
-<li><p>The structrue of learning based rouitng model</p>
-<p>We integrate the learning-based routing model in our optical NoC. When router model receive loss packets from other nodes, L-value calculator will caculate loss value based on the input loss packet and the optical thermal model. Then L-value update the corresponding the L-value in the L-Table as the algorithm which has been proposed in <strong>Section 3</strong>. When data packets is received from other nodes or processor, the Arbiter Unit will decide which port the packet go to as the input port and values in the L-Table. The arbiter unit will also send the loss packet at the same time. The whole strctrue of learning based routing model show as <strong>Figure[].</strong></p>
-</li>
-<li><p>The structrue of traffic-thermal co-simulation model</p>
-<p>The traditional simulation model computes steady temperatures in HotSpot with the power trace hased been produced before, then simulate traffic activities in the optical network model with the steady temperatures. The problem of  traditioanl simulation is that the network simulator cannot update the tempeture distribution during the network simulation. Therefore, traditional simulation is unused for verifying thermal-aware designs for optical  NoC. A traffic-thermal co-simulation model is more suitable for verifying thermal-aware design. The whole traffic-thermal co-simulaiton model we proposed is showed as <strong>Figure[]</strong>. The optical NoC network simulator computes a period of traffic and transfer the power trace to the tempature model. The power trace is produced by the power model of the network. Then temprature model of Hotspot update the temprature distribution of the network with the power trace. The whole co-simulaton platform forms a loop between optical network and Hotspot temperature simulation. So the co-simualtion update the temperature distribution during the network simulation. It is necessary for the research of thermal-aware designs for optical NoC. </p>
-</li>
+        <h4 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h4><h5 id="TopN的问题"><a href="#TopN的问题" class="headerlink" title="TopN的问题"></a>TopN的问题</h5><ol>
+<li>海量数据中找到重复次数最多的一个</li>
 </ol>
 
       
@@ -397,7 +389,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Noc/" rel="tag"># Noc</a>
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -425,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/14/2018-08-14/" rel="next" title="Hbase 的基础理解">
-                <i class="fa fa-chevron-left"></i> Hbase 的基础理解
+              <a href="/2018/10/04/tx-07/" rel="next" title="C++语言模块基础">
+                <i class="fa fa-chevron-left"></i> C++语言模块基础
               </a>
             
           </div>
@@ -434,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/28/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -580,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Traffic-thermal-Co-simulation-platform"><span class="nav-number">1.</span> <span class="nav-text">A Traffic-thermal Co-simulation platform</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#海量数据处理"><span class="nav-number">1.</span> <span class="nav-text">海量数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TopN的问题"><span class="nav-number">1.1.</span> <span class="nav-text">TopN的问题</span></a></li></ol></li></ol></div>
             
 
           </div>
