@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="线上回滚日记 TEST">
 <meta property="og:description" content="存储引擎 关于count(*) 知识点：MyISAM会直接存储总行数，InnoDB则不会，需要按行扫描。 实践：数据量大的表，InnoDB不要轻易select count(*)，性能消耗极大。 常见坑：只有查询全表的总行数，MyISAM才会直接返回结果，当加了where条件后，两种存储引擎的处理方式类似。 例如：t_user(uid, uname, age, sex);  uid PK age i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T14:17:20.346Z">
+<meta property="og:updated_time" content="2018-10-30T06:21:40.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql的基础概念">
 <meta name="twitter:description" content="存储引擎 关于count(*) 知识点：MyISAM会直接存储总行数，InnoDB则不会，需要按行扫描。 实践：数据量大的表，InnoDB不要轻易select count(*)，性能消耗极大。 常见坑：只有查询全表的总行数，MyISAM才会直接返回结果，当加了where条件后，两种存储引擎的处理方式类似。 例如：t_user(uid, uname, age, sex);  uid PK age i">
@@ -675,7 +675,7 @@
 <ul>
 <li>读未提交</li>
 <li>读提交</li>
-<li>可重读读</li>
+<li>可重复读</li>
 <li>串行化</li>
 <li>innoDB通过不同的锁策略来实现这些隔离的级别</li>
 </ul>
@@ -698,6 +698,7 @@
 </ol>
 </li>
 <li><p>事务的开始时间不一样，会不会影响“快照读”的结果呢？</p>
+<p>快照产生的时间是在select 语句时</p>
 </li>
 <li><p>在可重复读的隔离级别下，当第一个Read操作发生的时候，Read view就会建立。 在Read Committed隔离级别下，每次发出Read操作，都会建立新的Read view。</p>
 </li>
@@ -853,7 +854,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

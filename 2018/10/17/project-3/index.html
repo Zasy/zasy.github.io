@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/17/project-3/data_paraliesm.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/17/project-3/datapara.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/17/project-3/Non-blocking.png">
-<meta property="og:updated_time" content="2018-10-18T14:17:20.346Z">
+<meta property="og:updated_time" content="2018-10-29T16:36:29.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式深度学习算法框架的实现">
 <meta name="twitter:description" content="分布式深度学习的几种分类   数据并行 — 每台机器有自己的计算模型，权值进行共享  权值同步更新 – 有同步时间的矛盾，但是在收敛性上比较完整  权值异步更新 – 同步时间比较少，但是收敛性的验证不是很完备     模型并行  现阶段比较少的模型使用到  不同的feature map 在不同的机器上  或者不同的层在不同的机器上进行计算        Non-blocking的数据并行算法">
@@ -463,7 +463,46 @@
 <li>采用异步的同步模型，收敛效果要监控</li>
 </ol>
 </li>
+<li><p>benchmark</p>
+<p>alexNet     128x3x224x224     177ms</p>
+<p>googlenet 128x3x224x224 687ms</p>
+</li>
 </ol>
+<table>
+<thead>
+<tr>
+<th>Batch size</th>
+<th>BS=32</th>
+<th>BS=64</th>
+<th>BS=128</th>
+<th>Comm.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VGG19</td>
+<td>960ms</td>
+<td>1700ms</td>
+<td>3200ms</td>
+<td>1300ms</td>
+</tr>
+<tr>
+<td>GoogleNet   v1</td>
+<td>163ms</td>
+<td>280ms</td>
+<td>520ms</td>
+<td>230ms</td>
+</tr>
+<tr>
+<td>ResNet50</td>
+<td>420ms</td>
+<td>800ms</td>
+<td>1600ms</td>
+<td>340ms</td>
+</tr>
+</tbody>
+</table>
+<p>16 commucation node</p>
 
       
     </div>
@@ -606,7 +645,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
