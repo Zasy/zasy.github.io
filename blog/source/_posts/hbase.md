@@ -1,7 +1,9 @@
 ---
 title: HBase的部署架构和基础架构
 date: 2018-10-19 11:22:20
-tags: HBase
+tags: 
+- HBase
+- CAP
 ---
 
 ### HBase的来源 

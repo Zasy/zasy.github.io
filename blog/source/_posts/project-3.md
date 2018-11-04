@@ -33,9 +33,23 @@ tags: Chainer
    - 这里需要注意的问题时，当通信时间过长时，需要考虑weight的等待时间，多一些模型会有影响
    - backward运算时， dx = dy*w，backward计算时，不需要w进行更新的值，所以这里可以起一个线程进行all_reduce()，进行权值的更新。
 
-3.  实验结果，相对于blocking的算法，训练时间上有20%-40%性能提升；
+3. 实验结果，相对于blocking的算法，训练时间上有20%-40%性能提升；
 
 4. 对于异常点的监控
 
    1. 云服务中异常点的监控
    2. 采用异步的同步模型，收敛效果要监控
+
+5. benchmark
+
+   alexNet 	128x3x224x224 	177ms
+
+   googlenet 128x3x224x224 687ms
+
+| Batch size     | BS=32 | BS=64  | BS=128 | Comm.  |
+| -------------- | ----- | ------ | ------ | ------ |
+| VGG19          | 960ms | 1700ms | 3200ms | 1300ms |
+| GoogleNet   v1 | 163ms | 280ms  | 520ms  | 230ms  |
+| ResNet50       | 420ms | 800ms  | 1600ms | 340ms  |
+
+16 commucation node
