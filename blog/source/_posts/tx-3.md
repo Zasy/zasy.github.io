@@ -1,7 +1,9 @@
 ---
 title: regex in Golang -线上回滚日记 3
 date: 2018-06-22 01:34:35
-tags: regex going
+tags: 
+- regex
+- going
 ---
 
 ## regexp 包
@@ -16,7 +18,6 @@ tags: regex going
 
 * 使用Compile方法，返回Regexp对像，匹配符合模式的字符串对象，指定re对象的方法
 
-  
 
 ### example
 

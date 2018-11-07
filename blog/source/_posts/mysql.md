@@ -1,7 +1,8 @@
 ---
 title: Mysql的基础概念
 date: 2018-10-18 15:08:05
-tags: mysql
+tags: 
+- mysql
 ---
 
 ### 存储引擎
@@ -267,7 +268,7 @@ tags: mysql
 
    - 读未提交
    - 读提交
-   - 可重读读
+   - 可重复读
    - 串行化
    - innoDB通过不同的锁策略来实现这些隔离的级别
 
@@ -286,5 +287,7 @@ tags: mysql
    2. 加锁select、update、insect都只会使用记录锁，除了在外键约束和重复性检查时会封锁区间
 
 8. 事务的开始时间不一样，会不会影响“快照读”的结果呢？
+
+   快照产生的时间是在select 语句时
 
 9. 在可重复读的隔离级别下，当第一个Read操作发生的时候，Read view就会建立。 在Read Committed隔离级别下，每次发出Read操作，都会建立新的Read view。

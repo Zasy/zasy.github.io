@@ -52,3 +52,19 @@ tags: etcd
    1. 本地缓存啊
    2. 起watch监控对应的配置
    3. 替换本地的配置 多线程同步的问题 读写锁
+
+```go
+type Watcher interface {
+	AddEntry(key string, data []byte) error
+	DeleteEntry(key string) error
+	GetPrefix() string
+}
+```
+
+5. 具体自己提供结构的主要能力
+
+- 不同的本地配置结构实现该三个接口就可以快速的接入watcher配置的能力
+- watch结构内会初始化 new client, 对于本地缓存的配置。 会先load_conf 一把，然后会开始开启watch对应的配置
+- addEntry 具体配置修改添加本地配置
+- delete 参数本地的配置
+- getPrefix 配置本地prefix的能力
