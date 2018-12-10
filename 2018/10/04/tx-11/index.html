@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="操作系统," />
+  <meta name="keywords" content="Linux,操作系统," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="操作系统进程线程模型对于进程和线程的理解和把握可以说基本奠定了对系统的认知和把控能力。==其核心意义绝不仅仅是“线程是调度的基本单位，进程是资源分配的基本单位”这么简单。== 多线程特征：  一个进程下有多个线程 所有线程共享同一个进程的内存空间 由于线程的访问顺序不同，需要注意对临界变量的访问—&amp;gt; 产生冒险 相同的代码由于调度的顺序不同导致不同的结果  好处：  不同的线程可以独立的完成工">
-<meta name="keywords" content="操作系统">
+<meta name="keywords" content="Linux,操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统基础">
 <meta property="og:url" content="http://yoursite.com/2018/10/04/tx-11/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
 <meta property="og:description" content="操作系统进程线程模型对于进程和线程的理解和把握可以说基本奠定了对系统的认知和把控能力。==其核心意义绝不仅仅是“线程是调度的基本单位，进程是资源分配的基本单位”这么简单。== 多线程特征：  一个进程下有多个线程 所有线程共享同一个进程的内存空间 由于线程的访问顺序不同，需要注意对临界变量的访问—&amp;gt; 产生冒险 相同的代码由于调度的顺序不同导致不同的结果  好处：  不同的线程可以独立的完成工">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-15T08:28:14.473Z">
+<meta property="og:updated_time" content="2018-12-10T05:50:36.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统基础">
 <meta name="twitter:description" content="操作系统进程线程模型对于进程和线程的理解和把握可以说基本奠定了对系统的认知和把控能力。==其核心意义绝不仅仅是“线程是调度的基本单位，进程是资源分配的基本单位”这么简单。== 多线程特征：  一个进程下有多个线程 所有线程共享同一个进程的内存空间 由于线程的访问顺序不同，需要注意对临界变量的访问—&amp;gt; 产生冒险 相同的代码由于调度的顺序不同导致不同的结果  好处：  不同的线程可以独立的完成工">
@@ -433,6 +433,397 @@
 <li>线程之间有无先后访问的顺序 （线程的依赖关系）</li>
 <li>线程共享访问同一变量（同步互斥问题）</li>
 </ol>
+<h5 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h5><p>一个可执行文件<strong>(程序</strong>)的内容：</p>
+<ul>
+<li>二进制格式标识</li>
+<li>机器语言指令</li>
+<li>程序的入口地址</li>
+<li>数据</li>
+<li>符号表及重定位表</li>
+<li>共享库和动态链接信息</li>
+<li>其他信息：程序文件包含很多其他信息</li>
+</ul>
+<p><strong>进程内存布局</strong></p>
+<ul>
+<li><p>进程的内存分配 P96</p>
+<ol>
+<li>文本段</li>
+<li>初始化数据段</li>
+<li>未初始化数据段</li>
+<li>堆</li>
+<li>栈-（为每个函数设置栈帧，包括函数的地址，变量）</li>
+<li>argv 和 environ</li>
+<li>映射到内核的数据结构</li>
+</ol>
+</li>
+<li><p>虚拟内存管理 P98</p>
+<ol>
+<li>为什么可以用虚拟内存进行管理，局部性原理<ol>
+<li>时间局部性</li>
+<li>空间局部性</li>
+</ol>
+</li>
+<li>内核为每一个进程维护一个页表</li>
+</ol>
+</li>
+<li><p>栈和栈帧</p>
+<p>栈 为 每个调用的函数分配一个栈帧，其中包括</p>
+<ul>
+<li>函数实参和局部变量</li>
+<li>调用的链接信息 （CPU寄存器，程序计数器，下一条机器指令的地址）。当调用另一函数时，会在被调用的栈帧中保存这个寄存器的副本，以便函数返回时能为函数调用者将寄存器恢复。</li>
+</ul>
+</li>
+<li><p>跳转和优化编译器的问题</p>
+<ul>
+<li>优化编译器会导致部分变量存储在CPU寄存器中，在执行跳转命令时，类似于(goto)会发生错误，volatile会避免这种优化</li>
+</ul>
+</li>
+</ul>
+<h5 id="系统限制和选项"><a href="#系统限制和选项" class="headerlink" title="系统限制和选项"></a>系统限制和选项</h5><h5 id="系统和进程信息"><a href="#系统和进程信息" class="headerlink" title="系统和进程信息"></a>系统和进程信息</h5><ul>
+<li>进程信息：/proc/PID/<ul>
+<li>/proc/PID/fd 打开的文件描述符</li>
+<li>/proc/PID/task 目录<ul>
+<li>/proc/PID/task/TID  为进程下的每个线程建立的一个目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统信息：</li>
+</ul>
+<h5 id="文件I-O缓冲"><a href="#文件I-O缓冲" class="headerlink" title="文件I/O缓冲"></a>文件I/O缓冲</h5><ol>
+<li><p>为什么要有对文件I/O进行缓存？</p>
+<p>采用这样的操作主要是因为磁盘操作的速度太慢，这样不需要等待磁盘的操作。</p>
+</li>
+<li><p>控制文件I/O的内核缓存</p>
+<ol>
+<li>设置为完整的同步IO – 直接同步到磁盘</li>
+<li>绕过内核的高速缓存：直接I/O</li>
+</ol>
+</li>
+</ol>
+<h5 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h5><h5 id="目录与链接"><a href="#目录与链接" class="headerlink" title="目录与链接"></a>目录与链接</h5><ol>
+<li><p>目录</p>
+<ul>
+<li>i-node表中，会将目录记录为一种文件类型</li>
+<li>作为文件的目录，本质上是一个表格，包含文件名和i-node编号</li>
+</ul>
+</li>
+<li><p>硬链接</p>
+<p>定义： 在相同或者不同目录的文件，指向同一个i-node编号，这样就可以实现硬链接</p>
+<p>方法： <code>ln abc xyz</code> </p>
+<p>实质：在对应的目录文件中，多记录一个文件，指向同一个i-node ，i-node有一个字段记录了当前链接的目录的个数，只有当删除所有链接时，该文件的数据块才被删除</p>
+</li>
+<li><p>符号链接</p>
+<p>定义：一种特殊的文件类型，数据是另外一个文件的文件名</p>
+<p>方法： <code>ln -s test.txt newtest.txt</code></p>
+<p>实质：在目录下新建了一个文件，数据为该文件的全路径文件名</p>
+</li>
+<li><p>硬链接和软链接的差别</p>
+<ol>
+<li>硬链接由于必须指向同一个文件系统内的i-node，所以只能在同一文件系统中建立硬链接</li>
+<li>不能为目录创建硬链接，容易形成环</li>
+</ol>
+</li>
+</ol>
+<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><ol>
+<li><p>概念和概述</p>
+<ul>
+<li>信号是事件发生时对进程的通知机制，也叫软件中断。</li>
+<li>通常是，内核为进程产生信号：<ol>
+<li>硬件异常</li>
+<li>特殊终端字符 (Ctrl-Z or Ctrl-C)</li>
+<li>发生软件事件</li>
+</ol>
+</li>
+<li>信号的分类：<ol>
+<li>标准信号：内核向进程通知事件，编号范围1-31</li>
+<li>实时信号：</li>
+</ol>
+</li>
+</ul>
+<p>// TO-DO</p>
+<p>// 待完善 执行</p>
+</li>
+<li><p>进程的创建</p>
+<ol>
+<li>pid_t fork()<ul>
+<li>对父进程内存相应部分的完全复制</li>
+<li>父子进程的文件共享，得益于文件描述符记录表和系统级的打开文件表</li>
+<li>写时复制的内存语义，刚fork()的时候，内存都是只读状态，这样共享同样的物理内存页，当需要加载新的程序，或者修改对应的内存块时，会新建新的物理内存块，修改对应的虚拟地址对应的页。</li>
+<li>vfork() <ul>
+<li>无需为子进程虚拟内页或页表，和父进程共享内存，知道成功的执行exec()或调用了_exit()退出。</li>
+<li>在子进程调用exec()或是调用_exit()之前暂停执行父进程</li>
+<li>系统保障子进程先收到CPU的调度</li>
+</ul>
+</li>
+<li>fork() 后存在竞争状态，如果有同步的需要，可以用信号，或者进程间通信的方式，进行同步</li>
+</ul>
+</li>
+<li><p>进程终止exit()</p>
+<ul>
+<li>_exit()</li>
+<li>分为正常关闭和异常关闭</li>
+<li>都会执行多个清理的步骤，包括文件相关，进程间通信相关、内存释放相关和Stdio缓存的刷新</li>
+</ul>
+</li>
+<li><p>pid_t wait(&amp;status)</p>
+<ul>
+<li><p>当存在未被等待返回的子进程时，会一直阻塞。</p>
+</li>
+<li><p>当所有的子进程都已被等待返回，则会产生错误 等于 -1， 并且使 errno 为 ECHILD，可以用来等待所有子进程释放</p>
+</li>
+<li><p>正常返回子进程的pid</p>
+</li>
+<li><p>waitpid() 指定对应的pid，进行等待，补充上述的系统调用的不足之处</p>
+</li>
+<li><p><strong>孤儿进程和僵尸进程</strong></p>
+<ul>
+<li><p>由于父子进程的时间长度不同，必然会导致一些父进程会先于子进程退出，这样就会由众进程之祖(init)接管。</p>
+<p>这样的进程就是孤儿进程</p>
+</li>
+<li><p>在父进程执行wait()之前，子进程就已经终止，系统任然允许父进程在之后执行wait()操作，来确定子进程是如何终止的。内核通过将子进程转化为僵尸进程来处理这种情况。子进程会释放大部分的内存，唯一保留的是，内核进程表中的一条记录。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>exec() 程序的执行</p>
+<p>将新程序加载到某一进程的内存。</p>
+<ul>
+<li>文件描述符和exec()</li>
+<li>system()的实现</li>
+</ul>
+</li>
+<li><p>详述进程创建和程序执行</p>
+<ul>
+<li>进程记账 在进程终止时，写入一条记录信息</li>
+<li>系统调用clone()，也可以创建新的进程，对步骤的控制更加精准</li>
+<li>exec()和fork()对进程属性的影响</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><h5 id="概述-包含线程的进程内存模型"><a href="#概述-包含线程的进程内存模型" class="headerlink" title="概述 包含线程的进程内存模型"></a>概述 包含线程的进程内存模型</h5><ul>
+<li>相对多进程的优势<ol>
+<li>多进程数据段和代码段都不复用、内存不共享</li>
+<li>fork()来创建子进程的代价比较高</li>
+</ol>
+</li>
+</ul>
+<h5 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h5><ol>
+<li>加锁和解锁</li>
+<li>只有一个线程能够加锁，其他的会处于阻塞的状态</li>
+</ol>
+<h5 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h5><p>允许一个线程就某个共享变量的状态通知其他线程，并让其他线程等待（堵塞于）这一通知</p>
+<ol>
+<li><p>通知和等待条件变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">condition_variable notfull;</span><br><span class="line">condition_variable notempty;</span><br><span class="line">mutex lock;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 先获取共享变量的锁</span></span><br><span class="line">    unique_lock&lt;mutex&gt; lk(lock);    </span><br><span class="line">    <span class="keyword">while</span>(deq.size() == capacity)&#123;</span><br><span class="line">        <span class="comment">// 当不满足生产条件是，会将这个线程放进 等待状态的线程池，在放进去之前会释放获得的锁</span></span><br><span class="line">        <span class="comment">// 当被唤醒后，依然会检查是否可以生产</span></span><br><span class="line">        not_full.wait(lk);    </span><br><span class="line">    &#125;</span><br><span class="line">    deq.push_back(data);</span><br><span class="line">    lk.unlock();</span><br><span class="line">    not_empty.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">notfull.wait(lk);</span><br><span class="line">notfull.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><p>一个信号量是一个由<strong>内核维护</strong>的整数，其值被限制为大于或等于0。在信号量上可以执行各种系统调用：</p>
+<ol>
+<li>将信号量设置为一个绝对值</li>
+<li>当前值的基础上加上一个数量</li>
+<li>当前值得基础上减去一个数量</li>
+<li>等待信号量的值等于0</li>
+</ol>
+<p>后面两个操作，可能会导致进程的阻塞。</p>
+<p>信号量的系统调用：</p>
+<ol>
+<li>semget() 创建信号量</li>
+<li>semctl() 初始化信号量</li>
+<li>semop() 操作信号量</li>
+<li>semctl IPC_RMID 关闭信号量</li>
+</ol>
+<p>二元信号量的操作：</p>
+<ol>
+<li>预留p</li>
+<li>释放v </li>
+</ol>
+<h4 id="Socket介绍"><a href="#Socket介绍" class="headerlink" title="Socket介绍"></a>Socket介绍</h4><ol>
+<li>fd = socket(domain, type, protocal)<ul>
+<li>Domain unix、ip_v4 、ip_v6</li>
+<li>Type: 流 数据报 分别对应tcp协议和udp协议</li>
+</ul>
+</li>
+</ol>
+<h5 id="流socket"><a href="#流socket" class="headerlink" title="流socket"></a>流socket</h5><ol>
+<li>主动socket (客户端 用connect()发起链接) 和被动socket( 服务器端用listen()将socket设置为被动，及接收请求)</li>
+<li>监听接入连接：int listen(int sockfd, int backlog)<ul>
+<li>sockfd 指定了接收连接的文件socket</li>
+<li>backlog指定了未决连接的数量，实际上是维护了一个待连接请求的队列。这是由于一个连接只能有一个当前的链接导致的，其他的链接只能阻塞。所以在这个限制内的链接请求会立即成功，因为还维护了一个已连接成功的队列。</li>
+</ul>
+</li>
+<li>接收连接：int accept(int sockfd, struct sockaddr <em>addr, socklen_t </em>addrlen)<ul>
+<li>在fd引用的监听流socket上接收一个接入连接。如果没有未决连接就会阻塞</li>
+<li>会创建一个新的socket，并且正式这个新的socket会与执行connect()的对等socket进行连接。所以其返回的是已连接的socket的文件描述符。</li>
+</ul>
+</li>
+<li><p>连接到对等的socket: int connect(int sockfd, struct sockaddr, len) return 0 success -1 fail</p>
+</li>
+<li><p>流socket I/O</p>
+<ul>
+<li>read() and write () 双向的通信</li>
+<li>close() 关闭</li>
+</ul>
+</li>
+</ol>
+<h5 id="数据报socket"><a href="#数据报socket" class="headerlink" title="数据报socket"></a>数据报socket</h5><ol>
+<li>Socket(): 创建一个数据包socket</li>
+<li>Bind(): 允许另外的客户端发送数据报到这里，所以需要绑定一个唯一的地址</li>
+<li>Sendto(): 输入指定的地址，发送数据报到指定的地址</li>
+<li>Recvfrom(): 在接收数据报的同事，会获得客户端的地址，可以在需要的时候发一个响应，这在客户端为绑定唯一地址的情况下也是允许的。</li>
+<li>close()</li>
+</ol>
+<h4 id="TCP-IP-网络基础"><a href="#TCP-IP-网络基础" class="headerlink" title="TCP/IP 网络基础"></a>TCP/IP 网络基础</h4><ol>
+<li>物理层</li>
+<li>数据链路层<ul>
+<li>将IP层的数据报封装为帧进行传输</li>
+<li>MTU 帧大小的上限</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>本机到目标主机之间IP包的传输</li>
+<li>IP传输数据报<ul>
+<li>数据报的大小有上限</li>
+<li>这个上限至少有576字节 对于ipv4</li>
+</ul>
+</li>
+<li>IP是无连接和不可靠的</li>
+<li>IP可能会对数据报进行分段    <ul>
+<li>ipv4的最大的数据包大小为65535字节 + 40 字节头信息</li>
+<li>定义了路径MTU的概念</li>
+<li>分段对于客户端来说是透明的，收到后会进行重组</li>
+</ul>
+</li>
+<li>IP地址</li>
+</ul>
+</li>
+<li>传输层<ol>
+<li>端口号<ol>
+<li>特殊端口 1- 1023</li>
+<li>普通端口</li>
+</ol>
+</li>
+<li>用户数据包协议<ol>
+<li>在数据包前只添加了端口号和一个数据校验和</li>
+<li>无连接和不安全的</li>
+</ol>
+</li>
+<li>传输控制协议<ol>
+<li>流量控制</li>
+<li>慢启动和拥塞控制</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="Internet-Domain"><a href="#Internet-Domain" class="headerlink" title="Internet Domain"></a>Internet Domain</h5><ol>
+<li><p>网络字节序</p>
+<p>多字节整数的存储顺序</p>
+<ul>
+<li>大端模式 1234 先存12 再存34</li>
+<li>小端模式 1234 先存34 再存12</li>
+<li>小端架构是x86架构的机器</li>
+<li>其他主要的硬件架构的字节序都是大端架构</li>
+<li><strong>网络字节序也是大端的</strong></li>
+<li>socket的地址结构中的整数，应该按网络字节序进行存储</li>
+</ul>
+</li>
+<li><p>数据表示</p>
+<p>对传输数据进行的编码</p>
+</li>
+<li><p>主机和服务转换函数</p>
+</li>
+<li>域名系统(DNS)</li>
+</ol>
+<h5 id="深入探讨TCP协议"><a href="#深入探讨TCP协议" class="headerlink" title="深入探讨TCP协议"></a>深入探讨TCP协议</h5><ol>
+<li><p>TCP报文的格式</p>
+<ol>
+<li>源端口号 + 目标端口号 (16 + 16)</li>
+<li>序列号（32）</li>
+<li>确认号（32）</li>
+<li>首部长度 + 保留位 + 控制位 + 窗口大小 (4 + 4 + 8 + 16)</li>
+<li>数据校验和 + 紧急指针 (16 + 16)</li>
+<li>选项</li>
+<li>数据</li>
+</ol>
+<p>控制位：</p>
+<ol>
+<li>CWR 减小窗口大小</li>
+<li>ECE 拥塞控制回显</li>
+<li>URG 紧急包</li>
+<li>ACK 确认包标识</li>
+<li>PSH </li>
+<li>RST 重置连接</li>
+<li>SYN 同步信号标识</li>
+<li>FIN 完成发送任务</li>
+</ol>
+</li>
+<li><p>TCP的序列号和确认机制 </p>
+<p>确保面向连接和安全的</p>
+</li>
+<li><p>TCP协议的状态机和状态迁移图</p>
+</li>
+<li><p>shutdown()支持只关闭一端的通道，变成半双工</p>
+</li>
+<li><p>TTL 生成时间字段</p>
+</li>
+<li><p>为什么TIME_WAIT的时间为2MSL</p>
+<ol>
+<li>防止对方重发可以收到该重发的包</li>
+<li>将上一个连接的包彻底清除</li>
+</ol>
+</li>
+<li><p>监控套接字的cmd</p>
+<p><code>netstat -a</code></p>
+</li>
+<li><p>使用tcpdump来监视TCP流量</p>
+</li>
+</ol>
+<h4 id="其他备选的IO模型"><a href="#其他备选的IO模型" class="headerlink" title="其他备选的IO模型"></a>其他备选的IO模型</h4><p>应用大多数都需要2个方面的要求：</p>
+<ol>
+<li>用非阻塞的方式去进行IO操作</li>
+<li>同时检查多个文件描述符，也就是同时处理多个IO</li>
+</ol>
+<p>这里有三个满足上述要求的选项：</p>
+<ol>
+<li>IO多路复用</li>
+<li>信号驱动I/O</li>
+<li>epoll</li>
+</ol>
+<h5 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h5><ol>
+<li><p>int select(int nfds, fd_set <em>readfds, fd_set </em>wfds, fd_set *exceptfdts, struct timeval time_out)</p>
+<p>将自己需要控制的IO，放到对应的读事件，写事件，异常事件的集合中。</p>
+<p>FD_ZERO and FD_SET对集合进行初始化</p>
+<p>FD_ISSET检查是否就绪</p>
+</li>
+<li><p>int poll(struct pollfd fds[], nfds_t fds_t, timeval timeout)</p>
+<p>fds[] 输入了我们想要监控的fd，以及对应请求的时间，返回中记录了就绪的事件</p>
+</li>
+<li><p>select 和 poll的缺陷</p>
+<ol>
+<li>内核必须检查所有被指定的文件描述符</li>
+<li>在调用的时候。每次都要讲文件描述符的数据结构拷贝到内核</li>
+<li>调用完成后还必须检查所有的文件描述符是否处于就绪态</li>
+</ol>
+</li>
+</ol>
+<h5 id="信号驱动IO"><a href="#信号驱动IO" class="headerlink" title="信号驱动IO"></a>信号驱动IO</h5><ol>
+<li>为内核发送的通知信号安装一个信号处理函数</li>
+<li>设定文件描述符的属主</li>
+<li>使能非阻塞IO</li>
+<li>使能信号驱动IO O_ASYNC</li>
+<li>调用进程可以执行其他的任务</li>
+<li>信号驱动IO使用的是边沿触发，当事件状态发成改变时，发送信号，中断当前的进程，执行信号处理函数</li>
+</ol>
+<h5 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h5><p>epoll由三个系统调用组成</p>
+<ol>
+<li>系统调用epoll_create()创建了一个epoll实例，返回代表该实例的文件描述符</li>
+<li>epoll_ctl() 操作和epoll相关联的兴趣列表，增加，删除、修改新的文件描述符到列表中</li>
+<li>epoll_wait() 返回就绪列表中的成员</li>
+</ol>
 
       
     </div>
@@ -449,6 +840,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
             <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
           
@@ -478,8 +871,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/04/tx-10/" rel="next" title="网络通信基础">
-                <i class="fa fa-chevron-left"></i> 网络通信基础
+              <a href="/2018/10/04/tx-09/" rel="next" title="数据机构与算法">
+                <i class="fa fa-chevron-left"></i> 数据机构与算法
               </a>
             
           </div>
@@ -488,8 +881,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/04/tx-09/" rel="prev" title="数据机构与算法">
-                数据机构与算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/17/project-1/" rel="prev" title="基于Etcd的配置中心搭建">
+                基于Etcd的配置中心搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +964,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +977,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -633,7 +1026,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程线程模型"><span class="nav-number">1.1.</span> <span class="nav-text">进程线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多线程"><span class="nav-number">1.1.1.</span> <span class="nav-text">多线程</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程线程模型"><span class="nav-number">1.1.</span> <span class="nav-text">进程线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多线程"><span class="nav-number">1.1.1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程"><span class="nav-number">1.1.2.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统限制和选项"><span class="nav-number">1.1.3.</span> <span class="nav-text">系统限制和选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统和进程信息"><span class="nav-number">1.1.4.</span> <span class="nav-text">系统和进程信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件I-O缓冲"><span class="nav-number">1.1.5.</span> <span class="nav-text">文件I/O缓冲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件系统"><span class="nav-number">1.1.6.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#目录与链接"><span class="nav-number">1.1.7.</span> <span class="nav-text">目录与链接</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信号"><span class="nav-number">1.2.</span> <span class="nav-text">信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">1.3.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概述-包含线程的进程内存模型"><span class="nav-number">1.3.1.</span> <span class="nav-text">概述 包含线程的进程内存模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#互斥量"><span class="nav-number">1.3.2.</span> <span class="nav-text">互斥量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件变量"><span class="nav-number">1.3.3.</span> <span class="nav-text">条件变量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信号量"><span class="nav-number">1.4.</span> <span class="nav-text">信号量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Socket介绍"><span class="nav-number">1.5.</span> <span class="nav-text">Socket介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#流socket"><span class="nav-number">1.5.1.</span> <span class="nav-text">流socket</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据报socket"><span class="nav-number">1.5.2.</span> <span class="nav-text">数据报socket</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-IP-网络基础"><span class="nav-number">1.6.</span> <span class="nav-text">TCP/IP 网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Internet-Domain"><span class="nav-number">1.6.1.</span> <span class="nav-text">Internet Domain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#深入探讨TCP协议"><span class="nav-number">1.6.2.</span> <span class="nav-text">深入探讨TCP协议</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他备选的IO模型"><span class="nav-number">1.7.</span> <span class="nav-text">其他备选的IO模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IO多路复用"><span class="nav-number">1.7.1.</span> <span class="nav-text">IO多路复用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#信号驱动IO"><span class="nav-number">1.7.2.</span> <span class="nav-text">信号驱动IO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#epoll"><span class="nav-number">1.7.3.</span> <span class="nav-text">epoll</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

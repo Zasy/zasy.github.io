@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。  线上服务更新Shell指令  1234567891011#!/bin/bashsource">
+<meta name="description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。 ​    shell是Linux环境下批处理的脚本语言。其按一定的语法进行系统调用，对于批处理">
 <meta name="keywords" content="Linux,Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线上回滚笔记-01">
 <meta property="og:url" content="http://yoursite.com/2018/06/07/tx-01/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
-<meta property="og:description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。  线上服务更新Shell指令  1234567891011#!/bin/bashsource">
+<meta property="og:description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。 ​    shell是Linux环境下批处理的脚本语言。其按一定的语法进行系统调用，对于批处理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-30T06:29:40.137Z">
+<meta property="og:updated_time" content="2018-12-10T05:47:04.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线上回滚笔记-01">
-<meta name="twitter:description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。  线上服务更新Shell指令  1234567891011#!/bin/bashsource">
+<meta name="twitter:description" content="Linux 常用shell 指令​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。 ​    shell是Linux环境下批处理的脚本语言。其按一定的语法进行系统调用，对于批处理">
 
 
 
@@ -417,6 +417,9 @@
 
       
         <h2 id="Linux-常用shell-指令"><a href="#Linux-常用shell-指令" class="headerlink" title="Linux 常用shell 指令"></a>Linux 常用shell 指令</h2><p>​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。</p>
+<p>​    shell是Linux环境下批处理的脚本语言。其按一定的语法进行系统调用，对于批处理的任务可以任意的脚本话，使得一些很简单的批处理任务可以脚本化完成。</p>
+<p>​    为什么需要用shell去处理任务呢，在很多现实场景中，我们的简单的处理任务都是串行化并且简单化的。系统提供的命令可以快速的检索日志、查看网络通信接口，查看系统和硬件的状况。</p>
+<p>​    怎么用？</p>
 <ul>
 <li><h4 id="线上服务更新Shell指令"><a href="#线上服务更新Shell指令" class="headerlink" title="线上服务更新Shell指令"></a>线上服务更新Shell指令</h4></li>
 </ul>
@@ -499,6 +502,14 @@
 <li>-X 指定打印包的格式 详细的包内容</li>
 <li>-i  指定网卡</li>
 </ol>
+</li>
+<li><p>kill – 对进程发送信号</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kill -s signal_name pid #向对应进程发送对应的信号</span><br><span class="line">1		HUP	(hang up)</span><br><span class="line">2		INT (interrupt)</span><br><span class="line">3		QUIT(quit)</span><br><span class="line">6		ABRT(abort)</span><br><span class="line">9		KILL(non-catchable)</span><br><span class="line">14		ALRM(alarm clock)</span><br><span class="line">15 		TERM(software termination signal)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>批量关闭含有某些关键词的进程</p>
+<p>  <code>kill -9 $(pidof 进程名关键字)</code></p>
+</li>
+</ol>
 <p>​    </p>
 </li>
 </ol>
@@ -549,18 +560,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/07/tx-02/" rel="next" title="线上回滚笔记-02">
-                <i class="fa fa-chevron-left"></i> 线上回滚笔记-02
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/22/tx-3/" rel="prev" title="regex in Golang -线上回滚日记 3">
-                regex in Golang -线上回滚日记 3 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/07/tx-02/" rel="prev" title="线上回滚笔记-02">
+                线上回滚笔记-02 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -642,7 +649,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -655,7 +662,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

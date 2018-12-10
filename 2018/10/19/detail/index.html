@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer） GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源">
+<meta name="description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer）  GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源   适配器模式 将一个类的接">
 <meta name="keywords" content="细节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见面试问题—细节篇">
 <meta property="og:url" content="http://yoursite.com/2018/10/19/detail/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
-<meta property="og:description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer） GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源">
+<meta property="og:description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer）  GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源   适配器模式 将一个类的接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T03:32:03.601Z">
+<meta property="og:updated_time" content="2018-12-10T05:47:04.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见面试问题—细节篇">
-<meta name="twitter:description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer） GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源">
+<meta name="twitter:description" content="什么是RESTful架构：  　　（1）每一个URI代表一种资源； 　　（2）客户端和服务器之间，传递这种资源的某种表现层； 　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。  状态转化（State Transfer）  GET用来获取资源 POST用来新建资源（也可以用于更新资源） PUT用来更新资源 DELETE用来删除资源   适配器模式 将一个类的接">
 
 
 
@@ -423,13 +423,55 @@
 <p>　　（2）客户端和服务器之间，传递这种资源的某种表现层；</p>
 <p>　　（3）客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。</p>
 <ol start="2">
-<li><strong>状态转化（State Transfer）</strong><ol>
+<li><p><strong>状态转化（State Transfer）</strong></p>
+<ol>
 <li><strong>GET用来获取资源</strong></li>
 <li><strong>POST用来新建资源（也可以用于更新资源）</strong></li>
 <li><strong>PUT用来更新资源</strong></li>
 <li><strong>DELETE用来删除资源</strong></li>
 </ol>
 </li>
+<li><p>适配器模式</p>
+<p>将一个类的接口，转换成客户期望的另一个接口，适配器让原本接口不兼容的类可以合作无间</p>
+<p>针对接口编程的具体实现，例如：将类的接口对外的接口</p>
+</li>
+<li><p>Go的接口是什么</p>
+<ol>
+<li><p>接口提供了一种方式来说明对象的行为</p>
+</li>
+<li><p>接口定义了一组方法，但是这些方法不包含(实现代码)：它们没有被实现。接口内也不能包含变量。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Namer <span class="keyword">interface</span> &#123;</span><br><span class="line">    Method1(param_list) return_type</span><br><span class="line">    Method2(param_lsit) return_type</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接口的名字由方法名加<code>[e]r</code>后缀组成</p>
+</li>
+<li><p>类型不需要显示声明它实现了某个接口：接口被隐式的实现。多个类型可以实现同一个接口。</p>
+</li>
+<li>实现某个接口的类型可以有其他的方法</li>
+<li>一个类型可以实现多个接口</li>
+<li>接口类型可以包含一个实例的引用，改实例的类型实现了此接口（接口是动态类型）</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Shaper <span class="keyword">interface</span> &#123;</span><br><span class="line">    Area() <span class="keyword">float32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Square <span class="keyword">struct</span> &#123;</span><br><span class="line">    side <span class="keyword">float32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> (sq *Square) Area() <span class="keyword">float32</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> sq.side * sq.side</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    sq1 := <span class="built_in">new</span>(Square)</span><br><span class="line">    sql.side = <span class="number">5</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> areaIntf Shaper</span><br><span class="line">    areaIntf = sq1</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// shorter, without separate declaration</span></span><br><span class="line">    <span class="comment">// areaIntf := Shaper(sq1)</span></span><br><span class="line">    <span class="comment">// or even:</span></span><br><span class="line">    <span class="comment">// areaIntf := sq1</span></span><br><span class="line">    fmt.Printf(<span class="string">"The square has area: %f\n"</span>, areaIntf.Area())    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>接口变量中包含了接受者实例的值和指向对应方法表的指针</li>
+<li>多态的go版本， interface相当于一个函数能力的表格，实现了表格里的函数的实例可以被赋值给改接口的实例，接口实例运行时，就按照表格中记录的接口实现的方法的地址去调用具体的实现。这个和多态的理解是一样的：同一个类型在不同的实例上似乎表现不同的行为</li>
+<li>也可以以一种稍微不同的方式来使用接口这个词：从某个类型的角度来看，它的接口指的是：它的所有的导出方法，只不过没有显示地为这些导出方法额外定一个接口而已</li>
+</ol>
+</li>
+<li><p>死锁的必要条件</p>
+<ol>
+<li>互斥</li>
+<li>占有且等待</li>
+<li>不可抢占</li>
+<li>循环等待</li>
+</ol>
+</li>
+<li><p>避免死锁的方法</p>
+<ol>
+<li>破坏占有且等待条件 (一次申请所有资源，不然阻塞)</li>
+<li>破坏不可抢占条件 (不能申请资源被阻塞时，自己的资源需要被释放，被抢占)</li>
+<li>破坏循环等待条件 (必须按一定的顺序申请资源)</li>
+</ol>
+</li>
+<li></li>
 </ol>
 
       
@@ -485,6 +527,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/22/go-decotator-pattern/" rel="prev" title="Go装饰器模式教程">
+                Go装饰器模式教程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -556,7 +602,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

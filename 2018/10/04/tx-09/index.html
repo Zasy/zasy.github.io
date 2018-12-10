@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂    解答：  二叉搜索树的第K大节点  解答：二叉搜索树的中序遍历有序的特点  代码 12345678910111213141516171819202122232425#include">
+<meta name="description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂   5 重载赋值运算符 😀 😀   6 调整数组使奇数位于偶数前面 😀 😀   7 第一个只出现一次的字符 😂 😂   8 奇偶升降序数组重组     解答：  二叉搜索树的">
 <meta name="keywords" content="算法,数据结构,leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据机构与算法">
 <meta property="og:url" content="http://yoursite.com/2018/10/04/tx-09/index.html">
 <meta property="og:site_name" content="线上回滚日记 TEST">
-<meta property="og:description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂    解答：  二叉搜索树的第K大节点  解答：二叉搜索树的中序遍历有序的特点  代码 12345678910111213141516171819202122232425#include">
+<meta property="og:description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂   5 重载赋值运算符 😀 😀   6 调整数组使奇数位于偶数前面 😀 😀   7 第一个只出现一次的字符 😂 😂   8 奇偶升降序数组重组     解答：  二叉搜索树的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-30T08:00:22.704Z">
+<meta property="og:updated_time" content="2018-12-10T05:47:04.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据机构与算法">
-<meta name="twitter:description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂    解答：  二叉搜索树的第K大节点  解答：二叉搜索树的中序遍历有序的特点  代码 12345678910111213141516171819202122232425#include">
+<meta name="twitter:description" content="leetcode列表   序号 题目 代码 解答     1 二叉搜索树的第k大节点 😊 😊   2 实现LRU内存模型 😊 😊   3 并查集实现最小生成树 😊 😊   4 最短路径算法 🙂 🙂   5 重载赋值运算符 😀 😀   6 调整数组使奇数位于偶数前面 😀 😀   7 第一个只出现一次的字符 😂 😂   8 奇偶升降序数组重组     解答：  二叉搜索树的">
 
 
 
@@ -450,6 +450,29 @@
 <td style="text-align:center">🙂</td>
 <td style="text-align:center">🙂</td>
 </tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">重载赋值运算符</td>
+<td style="text-align:center">😀</td>
+<td style="text-align:center">😀</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">调整数组使奇数位于偶数前面</td>
+<td style="text-align:center">😀</td>
+<td style="text-align:center">😀</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">第一个只出现一次的字符</td>
+<td style="text-align:center">😂</td>
+<td style="text-align:center">😂</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">奇偶升降序数组重组</td>
+<td style="text-align:center"></td>
+</tr>
 </tbody>
 </table>
 <p>解答：</p>
@@ -483,7 +506,7 @@
 <li><p>解答：最小生成树，是将一个图形成一个连接分量，而这个连接分量的边的权值之和最小。采用贪心法，首先将边按权值大小进行排序。边按大小顺序进行连通，连通前检查该连通的头是否相同，即是否形成环，若形成环则取消该边的加入，若不形成环则将该边加入到连通分量，当连通了所有的点之后，则形成了左右的最小的生成树</p>
 </li>
 <li><p>代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//第一部分完成并查集类的设计</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFindSet</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UnionFindSet(<span class="keyword">int</span> s)&#123;</span><br><span class="line">        size = s;</span><br><span class="line">        parents = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">-1</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(parents[x] &lt; <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">return</span> parents[x] = Find(parents[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> root1, <span class="keyword">int</span> root2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root1 == root2) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(parents[root1] &lt; parents[root2])&#123;</span><br><span class="line">            parents[root2] = root1;</span><br><span class="line">            parents[root1] -= <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            parents[root1] = root2;</span><br><span class="line">            parents[root2] -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parents;</span><br><span class="line">    <span class="keyword">int</span> size;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; krus(<span class="built_in">vector</span>&lt;Edge&gt; edges, <span class="keyword">int</span> n)&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Edge&gt; res;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> cmp = [](Edge left, Edge right)&#123; <span class="keyword">return</span> left.val &gt; right.val&#125;;</span><br><span class="line">    priority_queue&lt;Edge, <span class="built_in">vector</span>&lt;Edge&gt;, <span class="keyword">decltype</span>(cmp)&gt; q(cmp);</span><br><span class="line">    </span><br><span class="line">    UnionFindSet ufs = <span class="keyword">new</span> UnionFindSet(n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> edge : edges)&#123;</span><br><span class="line">        q.push(edge);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">		Edge temp = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(ufs.Find(temp.begin) == ufs.Find(temp.end))&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           	ufs.Union(ufs.Find(temp.begin), ufs.Find(temp.end));</span><br><span class="line">           	res.push_back(temp);</span><br><span class="line">           	i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//第一部分完成并查集类的设计</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFindSet</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UnionFindSet(<span class="keyword">int</span> s)&#123;</span><br><span class="line">        size = s;</span><br><span class="line">        parents = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">-1</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(parents[x] &lt; <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">return</span> parents[x] = Find(parents[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> root1, <span class="keyword">int</span> root2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root1 == root2) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(parents[root1] &lt; parents[root2])&#123;</span><br><span class="line">            parents[root2] = root1;</span><br><span class="line">            parents[root1] -= <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            parents[root1] = root2;</span><br><span class="line">            parents[root2] -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parents;</span><br><span class="line">    <span class="keyword">int</span> size;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; krus(<span class="built_in">vector</span>&lt;Edge&gt; edges, <span class="keyword">int</span> n)&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Edge&gt; res;    </span><br><span class="line">    UnionFindSet ufs = <span class="keyword">new</span> UnionFindSet(n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> edge : edges)&#123;</span><br><span class="line">        q.push(edge);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">		Edge temp = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(ufs.Find(temp.begin) == ufs.Find(temp.end))&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           	ufs.Union(ufs.Find(temp.begin), ufs.Find(temp.end));</span><br><span class="line">           	res.push_back(temp);</span><br><span class="line">           	i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -595,6 +618,69 @@
 </li>
 </ul>
 </li>
+<li><p>重载赋值运算符</p>
+<p>解答：这里考虑的主要问题是带类成员变量的类的赋值运算函数的重载要考虑深复制，这里先</p>
+<ul>
+<li><p>复习一下：</p>
+<ul>
+<li><p>赋值运算函数和复制构造函数的区别和运用的场景的不同。</p>
+</li>
+<li><p>复制构造函数： 用于将一个对象复制到新创建的对象中。用于初始化过程中</p>
+<ul>
+<li><p>何时调用：<strong>新建一个对象并将其初始化</strong>为同类的现有对象时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> metoo = motto; <span class="comment">// 调用复制构造函数</span></span><br><span class="line"><span class="built_in">string</span> also = String(motto); <span class="comment">// 先复制构造函数</span></span><br></pre></td></tr></table></figure>
+<p>每当程序生成一个对象的复本，编译器都会先调用的复制构造函数，具体说就是按值传递或函数返回对象的时候，就是说产生临时复本的时候都会调用复制构造函数，所以用值传递减少复制构造函数的调用</p>
+</li>
+<li><p>有何功能：</p>
+<ul>
+<li>默认的复制构造函数会逐个复制非静态的成员函数，复制的是成员的值，所以默认的复制构造函数只是浅复制</li>
+<li>一般要定制显示构造函数进行深度复制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>赋值运算符的重构</p>
+<ul>
+<li>定义：类对象赋值。通过类重载赋值运算符实现。</li>
+<li>何时使用：将已有的一个对象赋值给另外一个对象的时候，将使用重载的运算符</li>
+<li>有何功能：<ul>
+<li>复制数据前会将以前的分配的空间进行释放</li>
+<li>函数应该避免将值赋给自身，因为赋值前会将自己空间进行释放</li>
+<li>函数指向一个指向调用对象的引用，因为需要进行连续的赋值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>引出关于运算符的话题</p>
+<ul>
+<li><p>重载的运算符是选择成为成员函数还是非成员函数</p>
+<ul>
+<li><p>成员函数通过成员进行调动</p>
+</li>
+<li><p>非成员对象不需要成员调动，左边的操作数对应于运算符函数的第一个参数，右边的操作符对应于第二个参数，问题是非成员函数不能访问类的私有数据</p>
+<p>Friend Time operator*(double m, const Time &amp;t);</p>
+</li>
+</ul>
+</li>
+<li><p>双向操作符和单向操作符在重载的时候有区别吗？</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>解法：按上述的三个要点</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">string</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">string</span>(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">    <span class="built_in">string</span>();</span><br><span class="line">    ~<span class="built_in">string</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* str;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1. 返回string &amp;， 这样才可以连续赋值</span></span><br><span class="line"><span class="comment">// 2. 输入的参数为常量引用，引用可以减少复制构造函数调用，由于函数内不会变更实例的状态，需要将输入参数的定义为常量</span></span><br><span class="line"><span class="comment">// 3. 需要将原先对象占据的空间清除</span></span><br><span class="line"><span class="comment">// 4. 赋值操作需要避免赋值给自己，需要检查是否赋值给自己</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> &amp; <span class="built_in">string</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="built_in">string</span> &amp; st)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> == &amp;st) <span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">//避免自己赋值给自己    </span></span><br><span class="line">    <span class="keyword">delete</span>[] str;</span><br><span class="line">    len = st.len;</span><br><span class="line">    str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">strcpy</span>(str, st.str);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升级的代码考虑了异常安全性的原则， 赋值函数内部抛出异常的时候，str由于delete了，会指向不定的地址，导致异常安全性问题，完美的方案是不让空指针产生，让临时的string变量承接输入变量，置换内部的指针和变量，临时变量调用正常调用析构函数释放空间</span></span><br><span class="line"><span class="built_in">string</span>&amp; <span class="built_in">string</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="built_in">string</span> &amp; st)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> != &amp;st)&#123;</span><br><span class="line">        <span class="built_in">string</span> temp(st);</span><br><span class="line">        <span class="keyword">char</span>* pTemp = temp.str;</span><br><span class="line">        temp.str = str;</span><br><span class="line">        str = pTemp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> lenTemp = temp.len;</span><br><span class="line">        temp.len = len;</span><br><span class="line">        len = lenTemp;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>奇偶升降序数组重组</p>
+<p>题目：一个数组奇数位是降序，偶数位是升序，重组数组，将数组从小到大排列，算法复杂度要求是O(n)。</p>
+<p>解法：可以将奇数位数组想成一个带顺序的数组，偶数位数组也是一个带顺序的数组，题目就是一个合并两个排序数组的题目。</p>
+<p>代码:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 张哲 on 2018/11/8.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; MySort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data)&#123;</span><br><span class="line">    <span class="keyword">int</span> len = data.size();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = (len % <span class="number">2</span> == <span class="number">0</span>) ? len <span class="number">-1</span> : len - <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"i: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"j: "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( i &lt;= (len - <span class="number">1</span>) &amp;&amp; (j &gt;= <span class="number">0</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i] &lt; data[j])&#123;</span><br><span class="line">            res.push_back(data[i]);</span><br><span class="line">            i = i + <span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.push_back(data[j]);</span><br><span class="line">            j = j - <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= len - <span class="number">1</span>)&#123;</span><br><span class="line">        res.push_back(data[i]);</span><br><span class="line">        i = i+ <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">        res.push_back(data[j]);</span><br><span class="line">        j= j - <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = &#123;<span class="number">0</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">20</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v : MySort(data))&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">" "</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h4 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h4><ol>
 <li><p>最长有效括号对</p>
@@ -650,11 +736,38 @@
 <li>或者hash划分小文件，小文件使用hash_set检查各个元素，得到不重复的整数</li>
 </ul>
 </li>
-<li>如何在40亿数字中判断是否有某个数<ul>
+<li><p>如何在40亿数字中判断是否有某个数</p>
+<ul>
 <li>位图法标记某个数是否存在，check标记数组</li>
 </ul>
 </li>
+<li><p>设计题： 设计长链接转短链接</p>
+</li>
+<li>基于范围的查找的数据结构： B+树 和跳表</li>
+<li>散列表扩容的方案</li>
+<li>static 其他文件调用的方法</li>
 </ol>
+<h4 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h4><ul>
+<li><p>是什么？</p>
+<p>霍夫曼树又称最优二叉树，是一种带权路径长度最短的<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%8F%89%E6%A0%91" target="_blank" rel="noopener">二叉树</a>。所谓树的带权路径长度，就是树中所有的叶结点的权值乘上其到根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）。树的路径长度是从树根到每一结点的路径长度之和，记为WPL=（W1<em>L1+W2</em>L2+W3<em>L3+…+Wn</em>Ln），N个权值Wi（i=1,2,…n）构成一棵有N个叶结点的二叉树，相应的叶结点的路径长度为Li（i=1,2,…n）。</p>
+</li>
+<li><p>怎么用？</p>
+<ol>
+<li><p>怎么构建哈夫曼树？</p>
+<p>演算过程[<a href="https://zh.wikipedia.org/w/index.php?title=%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81&amp;action=edit&amp;section=7" target="_blank" rel="noopener">编辑</a>]</p>
+<p><strong>进行霍夫曼编码前，我们先创建一个霍夫曼树。</strong></p>
+<p>⒈将每个英文字母依照出现频率由小排到大，最小在左，如<em>Fig.1</em>。</p>
+<p>⒉每个字母都代表一个终端节点（叶节点），比较<strong>F.O.R.G.E.T</strong>六个字母中每个字母的出现频率，将最小的两个字母频率相加合成一个新的节点。如<em>Fig.2</em>所示，发现<strong>F</strong>与<strong>O</strong>的频率最小，故相加2+3=5。</p>
+<p>⒊比较<strong>5.R.G.E.T</strong>，发现<strong>R</strong>与<strong>G</strong>的频率最小，故相加4+4=8。</p>
+<p>⒋比较<strong>5.8.E.T</strong>，发现<strong>5</strong>与<strong>E</strong>的频率最小，故相加5+5=10。</p>
+<p>⒌比较<strong>8.10.T</strong>，发现<strong>8</strong>与<strong>T</strong>的频率最小，故相加8+7=15。</p>
+<p>⒍最后剩<strong>10.15</strong>，没有可以比较的对象，相加10+15=25。<br><strong>进行编码</strong></p>
+<p>1.给霍夫曼树的所有左链接’0’与右链接’1’。</p>
+<p>2.从树根至树叶依序记录所有字母的编码，如<em>Fig.3</em>。</p>
+</li>
+</ol>
+</li>
+</ul>
 
       
     </div>
@@ -704,8 +817,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/04/tx-11/" rel="next" title="操作系统基础">
-                <i class="fa fa-chevron-left"></i> 操作系统基础
+              <a href="/2018/10/04/tx-07/" rel="next" title="C++语言模块基础">
+                <i class="fa fa-chevron-left"></i> C++语言模块基础
               </a>
             
           </div>
@@ -714,8 +827,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/17/project-1/" rel="prev" title="基于Etcd的配置中心搭建">
-                基于Etcd的配置中心搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/04/tx-11/" rel="prev" title="操作系统基础">
+                操作系统基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -797,7 +910,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -810,7 +923,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -859,7 +972,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode列表"><span class="nav-number">1.</span> <span class="nav-text">leetcode列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错题集"><span class="nav-number">2.</span> <span class="nav-text">错题集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划专题"><span class="nav-number">2.1.</span> <span class="nav-text">动态规划专题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#海量数据处理"><span class="nav-number">2.2.</span> <span class="nav-text">海量数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TopN的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">TopN的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存可以放下的TopN问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">内存可以放下的TopN问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位图法"><span class="nav-number">2.3.</span> <span class="nav-text">位图法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode列表"><span class="nav-number">1.</span> <span class="nav-text">leetcode列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错题集"><span class="nav-number">2.</span> <span class="nav-text">错题集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划专题"><span class="nav-number">2.1.</span> <span class="nav-text">动态规划专题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#海量数据处理"><span class="nav-number">2.2.</span> <span class="nav-text">海量数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TopN的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">TopN的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存可以放下的TopN问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">内存可以放下的TopN问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位图法"><span class="nav-number">2.3.</span> <span class="nav-text">位图法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哈夫曼树"><span class="nav-number">2.4.</span> <span class="nav-text">哈夫曼树</span></a></li></ol></li></ol></div>
             
 
           </div>

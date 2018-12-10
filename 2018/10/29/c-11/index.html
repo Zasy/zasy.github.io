@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c++,智能指针,异常规范," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="c++11的新标准 新类型  新增了long long 和 unsigned long long 两个类型（64位的整型）  char32_t and char16_t  原始字符串   统一的初始化  扩大了大括号初始化的使用范围，可添加等号也可以不添加， 列表初始化的时候也可以用在new表达式中 大括号括起来来调用类的构造函  123Stump s1(3, 15.6); //old style">
+<meta name="keywords" content="c++,智能指针,异常规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11 新标准的内容">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/c-11/index.html">
+<meta property="og:site_name" content="线上回滚日记 TEST">
+<meta property="og:description" content="c++11的新标准 新类型  新增了long long 和 unsigned long long 两个类型（64位的整型）  char32_t and char16_t  原始字符串   统一的初始化  扩大了大括号初始化的使用范围，可添加等号也可以不添加， 列表初始化的时候也可以用在new表达式中 大括号括起来来调用类的构造函  123Stump s1(3, 15.6); //old style">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-10T05:47:04.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++11 新标准的内容">
+<meta name="twitter:description" content="c++11的新标准 新类型  新增了long long 和 unsigned long long 两个类型（64位的整型）  char32_t and char16_t  原始字符串   统一的初始化  扩大了大括号初始化的使用范围，可添加等号也可以不添加， 列表初始化的时候也可以用在new表达式中 大括号括起来来调用类的构造函  123Stump s1(3, 15.6); //old style">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/29/c-11/"/>
+
+
+
+
+
+  <title>C++11 新标准的内容 | 线上回滚日记 TEST</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c03b2b454cfa439bb25863b497b08b35";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">线上回滚日记 TEST</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不断书写才可以成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/c-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mark Zhan Zha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="线上回滚日记 TEST">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++11 新标准的内容</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T10:28:51+08:00">
+                2018-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/29/c-11/" class="leancloud_visitors" data-flag-title="C++11 新标准的内容">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="c-11的新标准"><a href="#c-11的新标准" class="headerlink" title="c++11的新标准"></a>c++11的新标准</h3><ol>
+<li><p>新类型</p>
+<ul>
+<li><p>新增了long long 和 unsigned long long 两个类型（64位的整型）</p>
+</li>
+<li><p>char32_t and char16_t</p>
+</li>
+<li>原始字符串</li>
+</ul>
+</li>
+<li><p>统一的初始化</p>
+<ol>
+<li>扩大了大括号初始化的使用范围，可添加等号也可以不添加，</li>
+<li>列表初始化的时候也可以用在new表达式中</li>
+<li>大括号括起来来调用类的构造函</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Stump <span class="title">s1</span><span class="params">(<span class="number">3</span>, <span class="number">15.6</span>)</span></span>; <span class="comment">//old style</span></span><br><span class="line">Stump s2&#123;<span class="number">5</span>, <span class="number">43</span>,<span class="number">4</span>&#125;; <span class="comment">// C++11</span></span><br><span class="line">Stump s3 = &#123;<span class="number">4</span>, <span class="number">32.1</span>&#125;; <span class="comment">//C++11</span></span><br></pre></td></tr></table></figure>
+<p>好处：</p>
+<ul>
+<li>缩窄：防止将数值赋给无法存储它的数值变量，但允许准换为更宽的类型</li>
+<li>Std::initializer_list 有用该类型修饰构造函数的参数的时候，初始化列表只能用该构造函数。并且这个修饰也可以修饰普通函数的参数，用于接受用大括号修饰的参数列表，并保持内容类型的一致性</li>
+</ul>
+</li>
+<li><p>声明</p>
+<p>c++11 提供了多种<strong>简化声明</strong>的方式</p>
+<ol>
+<li><p>auto</p>
+</li>
+<li><p>decltype 将变量的类型声明为表达式的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造一个比较的匿名函数</span></span><br><span class="line"><span class="keyword">auto</span> cmp = [](<span class="keyword">int</span> left, <span class="keyword">int</span> right) &#123; <span class="keyword">return</span> (left ^ <span class="number">1</span>) &lt; (right ^ <span class="number">1</span>);&#125;;</span><br><span class="line"><span class="comment">// 声明 优先级队列的时候， 简化具体化模版类的类型的输入</span></span><br><span class="line"><span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, <span class="keyword">decltype</span>(cmp)&gt; q3(cmp);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回类型后置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f1</span><span class="params">(<span class="keyword">double</span>, <span class="keyword">int</span>)</span></span>; <span class="comment">// traditional syntax</span></span><br><span class="line">auto f2(double, int) -&gt; double; // new syntax, return type is double</span><br></pre></td></tr></table></figure>
+<p>帮助模板函数指定返回类型，帮助编译器在遇到参数列表后，再去指定根据参数类型指定返回类型。</p>
+</li>
+<li><p>模板别名：using =</p>
+<p>对于冗长的标识符，方便的创造别名。</p>
+<p>以前：typedef</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;::iterator itType;</span><br></pre></td></tr></table></figure>
+<p>C++11提供的方式：using =</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> itType = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;::iterator;</span><br></pre></td></tr></table></figure>
+<p>差别在于，新语法可以用于模板的具体化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> arr12 = <span class="built_in">std</span>::<span class="built_in">array</span>&lt;T, <span class="number">12</span>&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>nullptr</code></p>
+<p>c++11 新增了关键字nullptr，用于表示空指针，这样可以避免以前0即表示空指针，又表示整数常量的问题。</p>
+</li>
+</ol>
+</li>
+<li><p>智能指针</p>
+<p>自动的完成delete的工作。首先引入了auto_ptr，以帮助自动化的完成这些工作，发展过程中，需要一些更加精致的机制，新增了三个智能指针 <code>unique_ptr</code> 、<code>shared_ptr</code>和<code>weak_ptr</code>。当指针过期的时候，期西沟函数将调用delete函数的运行来释放内存，防止内存泄漏。</p>
+<ol>
+<li><p>使用智能指针</p>
+<ul>
+<li>导入memory都文件 <code>#include &lt;memory&gt;</code></li>
+<li>使用智能指针的模板具体化实例指向新生成的对象 <code>unique_ptr&lt;string&gt; ps = new string(&quot;test&quot;);</code></li>
+<li>不需要delete去删除生成的内存</li>
+<li>对于<strong>非堆内存</strong>是禁止使用智能指针去删除对应的内存的<code>string vacation(&quot;what a happy day!!!&quot;)</code></li>
+</ul>
+</li>
+<li><p>为什么有三种智能指针</p>
+<p>当相同类型的智能指针相互赋值的时候，一块内存就会被删除多次，所以这样有很多种策略</p>
+<ul>
+<li>执行深复制；</li>
+<li>建立所有权(ownership)的概念，只有一个指针可以拥有它，这样只有<strong>拥有对象的智能指针</strong>的构造函数会删除该对象。然赋值操作去转让所有权。转让所有权之后该智能指针就不指向该内存了，就为空了，之后访问就会出现问题，auto_ptr就没有unique_ptr那么的严格；</li>
+<li>跟踪和引用特定对象的智能指针数，这里是引用计数，当最后一个指针过期时，才调用delete。</li>
+</ul>
+</li>
+<li><p>为什么unique_ptr要优于auto_ptr?</p>
+<ul>
+<li>当不合格使用unique_ptr的赋值的时候，会报错，而auto_ptr不会，运行时会发生错误</li>
+<li>作为临时右值赋给函数返回的临时变量时，unique_ptr不会报错</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt; pu1(<span class="keyword">new</span> <span class="built_in">string</span> <span class="string">" Hi bo!"</span>);</span><br><span class="line"><span class="built_in">unique_ptr</span>&lt; <span class="built_in">string</span>&gt; pu2;</span><br><span class="line">pu2 = pu1; <span class="comment">// not allowed;</span></span><br><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt; pu3;</span><br><span class="line">pu3 = <span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt;(<span class="keyword">new</span> <span class="built_in">string</span> <span class="string">"Yo!"</span>); <span class="comment">// allowed</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>unique_ptr支持使用std::move()，安全的执行智能指针的赋值操作</li>
+</ul>
+</li>
+<li><p>如何使用智能指针？</p>
+<ul>
+<li>对个指向同一对象的指针 使用shared_ptr</li>
+<li>不需要指向同一个对象的指针 使用unique_ptr</li>
+<li>new分配内存时，才能使用 auto_ptr 和 shared_ptr。 new [] 和 new 分配内存的时候都可以使用 unique_ptr。 当不再内存分配内存时，不能使用智能指针</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>c++11 抛弃了异常规范的指定，并且添加了关键字noexcept，指出不会引发异常的关键</p>
+</li>
+<li><p>作用域内的枚举</p>
+<ul>
+<li><p>不同的实现采用不同的底层类型，之前的底层类型都是整形类型。</p>
+</li>
+<li><p>枚举名的作用域为枚举定义所属的作用域，所以相同的作用域内的两个枚举，枚举变量名不能是相同的枚举名。新的枚举使用class或struct定义</p>
+</li>
+</ul>
+</li>
+<li><p>对类的修改</p>
+<ol>
+<li><p>显示转换运算符</p>
+<p>原因：自动类型转换可能引起各种问题，c++引入老人关键词explicit，以静止单参数构造函数导致的自动类型转换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Plebe</span>&#123;</span></span><br><span class="line">    Plebe(<span class="keyword">int</span>); <span class="comment">//automatic int-to-plebe conversion</span></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Plebe</span><span class="params">(<span class="keyword">double</span>)</span></span>; <span class="comment">// required explicit use</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Plebe a, b;</span><br><span class="line">a = <span class="number">5</span>; <span class="comment">//implicit conversion, call Plebe(5)</span></span><br><span class="line">b = <span class="number">0.5</span>; <span class="comment">// not allowed</span></span><br><span class="line">b = Plebe(<span class="number">0.5</span>); <span class="comment">// allow explicit conversion</span></span><br></pre></td></tr></table></figure>
+<p>c++11拓展了explicit的用法，使得可对转换函数做类似的处理</p>
+</li>
+<li><p>类内成员的初始化</p>
+<p>在类内定义中初始化成员</p>
+<p>形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Session</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mem1 = <span class="number">10</span>; <span class="comment">// 类定义初始化</span></span><br><span class="line">    <span class="keyword">double</span> mem2 &#123;<span class="number">1966.54</span>&#125;; <span class="comment">// 大括号形式的类定义初始化</span></span><br><span class="line">	<span class="keyword">short</span> mem3;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Session()&#123;&#125;</span><br><span class="line">    Session(<span class="keyword">short</span> s) : mem3(s) &#123;&#125;</span><br><span class="line">    Session(<span class="keyword">int</span> n, <span class="keyword">double</span> d, <span class="keyword">short</span> s) : mem1(n), mem2(d), mem3(s) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好处：使用该初始化方式可以有效的减少代码量</p>
+</li>
+</ol>
+</li>
+<li><p>模板和STL方面的修改</p>
+<ol>
+<li><p>基于范围的for的循环</p>
+</li>
+<li><p>新的STL的容器</p>
+<ul>
+<li>forward_list 单向链表</li>
+<li>unordered_map,unordered_set 以及对应的multimap 或者multiset</li>
+<li>新增的模板array</li>
+</ul>
+</li>
+<li><p>valarray升级</p>
+</li>
+<li><p>尖括号</p>
+<p>需要和运算符&gt;&gt;区分开，所以声明嵌套的模板时，需要使用空格将尖括号分开</p>
+</li>
+</ol>
+</li>
+<li><p>右值<strong>引用</strong></p>
+<ul>
+<li><p>传统的c++引用，现在被称为左值引用，使得标识符关联到左值。(表示数据的表达式，变量名                                                                                                                                                                                                                                     或解除引用的指针)，程序可获取其地址。</p>
+</li>
+<li><p>C++11新增了右值引用，这是使用&amp;&amp;表示的。右值引用关联到右值，即可以出现在赋值表达式右边，但不能对其应用地址运算符的值。右值包括字面常量（c风格字符串除外，它表示地址）、诸如x+y等表达式以及返回值得函数（条件是该函数返回的不是引用）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r1 = <span class="number">13</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r2 = x + y;</span><br><span class="line"><span class="keyword">double</span> &amp;&amp; r3 = <span class="built_in">std</span>::<span class="built_in">sqrt</span>(<span class="number">2.0</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用右值引用的主要目的就是用于移动语义</p>
+</li>
+</ul>
+</li>
+<li><p>移动语义和右值引用</p>
+<ol>
+<li><p>为何需要移动语义？</p>
+<p> 移动语义避免了移动原始数据，而只是修改了记录，由于右值引用是临时变量，右值引用才可以引用该临时能量。该临时能量的值可以直接被窃取而返回，所以减少移动原始数据。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Useless two = one; <span class="comment">//calls copy constructor</span></span><br><span class="line"></span><br><span class="line"><span class="function">Useless <span class="title">four</span><span class="params">(one + three)</span></span>; <span class="comment">//临时变量作为输入，由于声明了移动构造函数，所以可以直接调用移动语义 calls move constructor</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在之前没有改移动语义的出现，是编译器的智能编译实现的优化</p>
+</li>
+<li>static_cast&lt;&gt;可将对象的类型强制转换为右值，转换为右值后可以使用移动构造函数和移动赋值运算符</li>
+<li>使用移动构造函数和普通的复制构造函数的主要区别是，输入变量是左值还是右值，左值还可以被调用，所以还有用处，而右值一般是临时的，不在被调用的，存储在一个临时的特殊位置，所以一般不会被再次调用，所以可以将其直接转移，减少复制。而static_cast&lt;&gt;可以将左值转换为右值。</li>
+<li>C++11 提供了更简单的std::move()的方式，在头文件utility中。</li>
+</ol>
+</li>
+<li><p>新的类功能</p>
+<ol>
+<li>C++11新增了移动构造函数和移动赋值运算符</li>
+<li><p>可以使用默认的成员函数： default 或者禁用默认的成员方法： delete</p>
+</li>
+<li><p>管理虚方法的标识符： override 和 final</p>
+<ul>
+<li><p>override</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">char</span>* ch)</span> <span class="keyword">const</span> override </span>&#123; </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; val() &lt;&lt; ch &lt;&lt; <span class="string">"!\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用虚说明符override指出您要覆盖一个虚函数：如果声明出现问题，不能覆盖基类的虚函数的话就会产生报错</p>
+</li>
+<li><p>final</p>
+<p>禁止派生类覆盖特定的虚方法，就会使用final虚函数说明符，放在虚函数的末尾</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Lambda函数</p>
+<ol>
+<li><p>比较函数指针、函数符和Lambda函数</p>
+<p> 首先将这三者都可以统称为函数对象。举例说明，完成一个函数对象，该函数对像需要返回该整数是否被可以被指定的整数整除：</p>
+<ol>
+<li><p>函数名：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">f3</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x % <span class="number">3</span> == <span class="number">0</span>;&#125;</span><br><span class="line"><span class="keyword">int</span> count3 = count_if(numbers.begin(), numbers.end(), f3); <span class="comment">//指定函数对象为函数名</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数符：</p>
+<p>函数符是一个类对象，重载operator()()方法来实现一些功能。</p>
+<p>好处：可以使用同一个函数符来完成两项的计数的任务</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">f_mod</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> dv;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    f_mod(<span class="keyword">int</span> d = <span class="number">1</span>): dv(d) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> x % dv == <span class="number">0</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">f_mod <span class="title">obj</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> is_div_by_3 = obj(<span class="number">7</span>); <span class="comment">// 运行重载之后的operator() () 函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> count3 = <span class="built_in">std</span>::count_if(number.begin(), number.end(), f_mod(<span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda函数</p>
+<p>c++11中对于接受函数对象的函数，可以使用匿名函数定义其参数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count3 = <span class="built_in">std</span>::count_if(numbers.begin(), numbers.end(), [](<span class="keyword">int</span> x)&#123;<span class="keyword">return</span> x % <span class="number">3</span> == <span class="number">0</span>;&#125;)</span><br></pre></td></tr></table></figure>
+<p>区别：</p>
+<ul>
+<li><p>使用[]替代了函数名；</p>
+</li>
+<li><p>没有声明返回的类型， （相当于隐性的使用了decltyp得到的类型）</p>
+</li>
+<li><p>仅当lambda表达式完全又一条语句构成的时候，才可以不指定返回类型，比如上面的情况；否则需要使用新增的返回类型后置的语法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[](<span class="keyword">double</span> x)-&gt;<span class="keyword">double</span>&#123;<span class="keyword">int</span> y = x; <span class="keyword">return</span> y - x;&#125; <span class="comment">// 返回类型后置</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>为什么要使用Lambda<ul>
+<li>距离： 让定义位于使用的地方</li>
+<li>简洁： 函数符代码比函数名和lambda代码更加繁琐</li>
+<li>效率： 函数地址的方法以为着是非内联的函数，而函数类型和lambda函数不会阻止内联</li>
+<li>功能：lambda函数可以访问作用域内的任何动态变量，要捕获要使用的变量，将其名称放入中括号内。<ul>
+<li>如果只指定了函数名, 如[z]，将按值访问变量；</li>
+<li>名称前加上&amp;，如[&amp;count]， 将按引用的访问count；</li>
+<li>[&amp;]，按引用访问所有的变量</li>
+<li>[=]， 按值访问所有的动态变量</li>
+<li>也支持混合使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>包装器 — 引申出适配器模式</p>
+<p>c++提供对个包装器。这些对象用于给其他编程接口提供更一致或更合适的接口。C++提供不同的包装器模板，bind、mem_fn和reference_wrap以及包装器function。</p>
+<ol>
+<li><p>包装器functiong和模板的低效性</p>
+<ul>
+<li><p>function模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::function&lt;<span class="keyword">double</span>(<span class="keyword">char</span>, <span class="keyword">int</span>)&gt; fdci;</span><br></pre></td></tr></table></figure>
+<p>从调用特征表的角度定义了一个对象，可用于包装调用特征标相同的函数指针、函数对象和lambda表达式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function&lt;<span class="keyword">double</span>(<span class="keyword">double</span>)&gt; ef1 = dub;</span><br><span class="line">function&lt;<span class="keyword">double</span>(<span class="keyword">double</span>)&gt; ef2 = square;</span><br></pre></td></tr></table></figure>
+<p>可以将function&lt;double(double)&gt;作为函数的形参，让形参f的类型与原始实参相匹配</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>c++11中的四种类型转换</p>
+<ol>
+<li><p>static_cast&lt;&gt;</p>
+<p>定义： Converts between types using a combination of implicit and user-defined conversions.</p>
+<p>完成编译器允许的隐式类型转换</p>
+<p>基本使用范围:</p>
+<ol>
+<li>基本数据类型之间的转换</li>
+<li>派生类体系的向上转型</li>
+</ol>
+<p>example:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world, this is B!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> B &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world, this is D!\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">E</span> &#123;</span> ONE = <span class="number">1</span>, TWO, THREE &#125;;</span><br><span class="line"><span class="keyword">enum</span> EU &#123; ONE = <span class="number">1</span>, TWO, THREE &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 1: initializing conversion</span></span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">3.14</span>); </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"n = "</span> &lt;&lt; n &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"v.size() = "</span> &lt;&lt; v.size() &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 2: static downcast</span></span><br><span class="line">    D d;</span><br><span class="line">    B&amp; br = d; <span class="comment">// upcast via implicit conversion</span></span><br><span class="line">    br.hello();</span><br><span class="line">    D&amp; another_d = <span class="keyword">static_cast</span>&lt;D&amp;&gt;(br); <span class="comment">// downcast</span></span><br><span class="line">    another_d.hello();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 3: lvalue to xvalue </span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2 = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;&amp;&gt;(v);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after move, v.size() = "</span> &lt;&lt; v.size() &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 4: discarded-value expression</span></span><br><span class="line">    <span class="keyword">static_cast</span>&lt;<span class="keyword">void</span>&gt;(v2.size());</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 5. inverse of implicit conversion</span></span><br><span class="line">    <span class="keyword">void</span>* nv = &amp;n;</span><br><span class="line">    <span class="keyword">int</span>* ni = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>*&gt;(nv);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"*ni = "</span> &lt;&lt; *ni &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 6. array-to-pointer followed by upcast</span></span><br><span class="line">    D a[<span class="number">10</span>];</span><br><span class="line">    B* dp = <span class="keyword">static_cast</span>&lt;B*&gt;(a);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 7. scoped enum to int or float</span></span><br><span class="line">    E e = E::ONE;</span><br><span class="line">    <span class="keyword">int</span> one = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(e);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; one &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 8. int to enum, enum to another enum</span></span><br><span class="line">    E e2 = <span class="keyword">static_cast</span>&lt;E&gt;(one);</span><br><span class="line">    EU eu = <span class="keyword">static_cast</span>&lt;EU&gt;(e2);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 9. pointer to member upcast</span></span><br><span class="line">    <span class="keyword">int</span> D::*pm = &amp;D::m;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; br.*<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span> B::*&gt;(pm) &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 10. void* to any type</span></span><br><span class="line">    <span class="keyword">void</span>* voidp = &amp;e;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;* p = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;*&gt;(voidp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>dynamic_cast</strong></p>
+<p>定义：Safely converts pointers and references to classes up, down, and sideways along the inheritance hierarchy.</p>
+<p>用法：<strong>dynamic_cast &lt;</strong><code>new_type</code><strong>&gt; (</strong><code>expression</code><strong>)</strong></p>
+<p>If the cast is successful, <code>dynamic_cast</code> returns a value of type <code>new_type</code>.</p>
+<p>If the cast fails and <code>new_type</code> is a reference type,it throws an exception that matches a handler of type <a href="../types/bad_cast.html">std::bad_cast</a>.</p>
+</li>
+<li><p><strong>const_cast</strong></p>
+<p>定义：对指针或引用去除或者添加const属性</p>
+<p>example:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span>&gt;(a);<span class="comment">//不对的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *pi = &amp;a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> * pii = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> *&gt;pi;<span class="comment">//去除指针中的常量性，也可以添加指针的常量性;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>reinterpret_cast</strong></p>
+<p>定义： 无视类型的引用之间的转换</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+            <a href="/tags/智能指针/" rel="tag"># 智能指针</a>
+          
+            <a href="/tags/异常规范/" rel="tag"># 异常规范</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/22/go-decotator-pattern/" rel="next" title="Go装饰器模式教程">
+                <i class="fa fa-chevron-left"></i> Go装饰器模式教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Mark Zhan Zha" />
+            
+              <p class="site-author-name" itemprop="name">Mark Zhan Zha</p>
+              <p class="site-description motion-element" itemprop="description">回滚即使成长, 更高的要求是对极致和细节的追求</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Zasy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zasyzhang@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#c-11的新标准"><span class="nav-number">1.</span> <span class="nav-text">c++11的新标准</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark Zhan Zha</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("g7knGrNdTfV0SCnSqeULRQ8k-gzGzoHsz", "75DKi86MPdh1w1ngVsrvHEUy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "middleRight";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

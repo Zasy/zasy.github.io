@@ -306,6 +306,1603 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mark Zhan Zha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="线上回滚日记 TEST">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/tx-11/" itemprop="url">操作系统基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T19:08:13+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/04/tx-11/" class="leancloud_visitors" data-flag-title="操作系统基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h4 id="进程线程模型"><a href="#进程线程模型" class="headerlink" title="进程线程模型"></a>进程线程模型</h4><p>对于进程和线程的理解和把握可以说基本奠定了对系统的认知和把控能力。<strong>==其核心意义绝不仅仅是“线程是调度的基本单位，进程是资源分配的基本单位”这么简单。==</strong></p>
+<h5 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h5><p>特征：</p>
+<ol>
+<li>一个进程下有多个线程</li>
+<li>所有线程共享同一个进程的内存空间</li>
+<li>由于线程的访问顺序不同，需要注意对临界变量的访问—&gt; 产生冒险 相同的代码由于调度的顺序不同导致不同的结果</li>
+</ol>
+<p>好处：</p>
+<ol>
+<li>不同的线程可以独立的完成工作</li>
+<li>线程的切换的效率要高很多</li>
+</ol>
+<p>关键点：</p>
+<ol>
+<li>线程之间有无先后访问的顺序 （线程的依赖关系）</li>
+<li>线程共享访问同一变量（同步互斥问题）</li>
+</ol>
+<h5 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h5><p>一个可执行文件<strong>(程序</strong>)的内容：</p>
+<ul>
+<li>二进制格式标识</li>
+<li>机器语言指令</li>
+<li>程序的入口地址</li>
+<li>数据</li>
+<li>符号表及重定位表</li>
+<li>共享库和动态链接信息</li>
+<li>其他信息：程序文件包含很多其他信息</li>
+</ul>
+<p><strong>进程内存布局</strong></p>
+<ul>
+<li><p>进程的内存分配 P96</p>
+<ol>
+<li>文本段</li>
+<li>初始化数据段</li>
+<li>未初始化数据段</li>
+<li>堆</li>
+<li>栈-（为每个函数设置栈帧，包括函数的地址，变量）</li>
+<li>argv 和 environ</li>
+<li>映射到内核的数据结构</li>
+</ol>
+</li>
+<li><p>虚拟内存管理 P98</p>
+<ol>
+<li>为什么可以用虚拟内存进行管理，局部性原理<ol>
+<li>时间局部性</li>
+<li>空间局部性</li>
+</ol>
+</li>
+<li>内核为每一个进程维护一个页表</li>
+</ol>
+</li>
+<li><p>栈和栈帧</p>
+<p>栈 为 每个调用的函数分配一个栈帧，其中包括</p>
+<ul>
+<li>函数实参和局部变量</li>
+<li>调用的链接信息 （CPU寄存器，程序计数器，下一条机器指令的地址）。当调用另一函数时，会在被调用的栈帧中保存这个寄存器的副本，以便函数返回时能为函数调用者将寄存器恢复。</li>
+</ul>
+</li>
+<li><p>跳转和优化编译器的问题</p>
+<ul>
+<li>优化编译器会导致部分变量存储在CPU寄存器中，在执行跳转命令时，类似于(goto)会发生错误，volatile会避免这种优化</li>
+</ul>
+</li>
+</ul>
+<h5 id="系统限制和选项"><a href="#系统限制和选项" class="headerlink" title="系统限制和选项"></a>系统限制和选项</h5><h5 id="系统和进程信息"><a href="#系统和进程信息" class="headerlink" title="系统和进程信息"></a>系统和进程信息</h5><ul>
+<li>进程信息：/proc/PID/<ul>
+<li>/proc/PID/fd 打开的文件描述符</li>
+<li>/proc/PID/task 目录<ul>
+<li>/proc/PID/task/TID  为进程下的每个线程建立的一个目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统信息：</li>
+</ul>
+<h5 id="文件I-O缓冲"><a href="#文件I-O缓冲" class="headerlink" title="文件I/O缓冲"></a>文件I/O缓冲</h5><ol>
+<li><p>为什么要有对文件I/O进行缓存？</p>
+<p>采用这样的操作主要是因为磁盘操作的速度太慢，这样不需要等待磁盘的操作。</p>
+</li>
+<li><p>控制文件I/O的内核缓存</p>
+<ol>
+<li>设置为完整的同步IO – 直接同步到磁盘</li>
+<li>绕过内核的高速缓存：直接I/O</li>
+</ol>
+</li>
+</ol>
+<h5 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h5><h5 id="目录与链接"><a href="#目录与链接" class="headerlink" title="目录与链接"></a>目录与链接</h5><ol>
+<li><p>目录</p>
+<ul>
+<li>i-node表中，会将目录记录为一种文件类型</li>
+<li>作为文件的目录，本质上是一个表格，包含文件名和i-node编号</li>
+</ul>
+</li>
+<li><p>硬链接</p>
+<p>定义： 在相同或者不同目录的文件，指向同一个i-node编号，这样就可以实现硬链接</p>
+<p>方法： <code>ln abc xyz</code> </p>
+<p>实质：在对应的目录文件中，多记录一个文件，指向同一个i-node ，i-node有一个字段记录了当前链接的目录的个数，只有当删除所有链接时，该文件的数据块才被删除</p>
+</li>
+<li><p>符号链接</p>
+<p>定义：一种特殊的文件类型，数据是另外一个文件的文件名</p>
+<p>方法： <code>ln -s test.txt newtest.txt</code></p>
+<p>实质：在目录下新建了一个文件，数据为该文件的全路径文件名</p>
+</li>
+<li><p>硬链接和软链接的差别</p>
+<ol>
+<li>硬链接由于必须指向同一个文件系统内的i-node，所以只能在同一文件系统中建立硬链接</li>
+<li>不能为目录创建硬链接，容易形成环</li>
+</ol>
+</li>
+</ol>
+<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><ol>
+<li><p>概念和概述</p>
+<ul>
+<li>信号是事件发生时对进程的通知机制，也叫软件中断。</li>
+<li>通常是，内核为进程产生信号：<ol>
+<li>硬件异常</li>
+<li>特殊终端字符 (Ctrl-Z or Ctrl-C)</li>
+<li>发生软件事件</li>
+</ol>
+</li>
+<li>信号的分类：<ol>
+<li>标准信号：内核向进程通知事件，编号范围1-31</li>
+<li>实时信号：</li>
+</ol>
+</li>
+</ul>
+<p>// TO-DO</p>
+<p>// 待完善 执行</p>
+</li>
+<li><p>进程的创建</p>
+<ol>
+<li>pid_t fork()<ul>
+<li>对父进程内存相应部分的完全复制</li>
+<li>父子进程的文件共享，得益于文件描述符记录表和系统级的打开文件表</li>
+<li>写时复制的内存语义，刚fork()的时候，内存都是只读状态，这样共享同样的物理内存页，当需要加载新的程序，或者修改对应的内存块时，会新建新的物理内存块，修改对应的虚拟地址对应的页。</li>
+<li>vfork() <ul>
+<li>无需为子进程虚拟内页或页表，和父进程共享内存，知道成功的执行exec()或调用了_exit()退出。</li>
+<li>在子进程调用exec()或是调用_exit()之前暂停执行父进程</li>
+<li>系统保障子进程先收到CPU的调度</li>
+</ul>
+</li>
+<li>fork() 后存在竞争状态，如果有同步的需要，可以用信号，或者进程间通信的方式，进行同步</li>
+</ul>
+</li>
+<li><p>进程终止exit()</p>
+<ul>
+<li>_exit()</li>
+<li>分为正常关闭和异常关闭</li>
+<li>都会执行多个清理的步骤，包括文件相关，进程间通信相关、内存释放相关和Stdio缓存的刷新</li>
+</ul>
+</li>
+<li><p>pid_t wait(&amp;status)</p>
+<ul>
+<li><p>当存在未被等待返回的子进程时，会一直阻塞。</p>
+</li>
+<li><p>当所有的子进程都已被等待返回，则会产生错误 等于 -1， 并且使 errno 为 ECHILD，可以用来等待所有子进程释放</p>
+</li>
+<li><p>正常返回子进程的pid</p>
+</li>
+<li><p>waitpid() 指定对应的pid，进行等待，补充上述的系统调用的不足之处</p>
+</li>
+<li><p><strong>孤儿进程和僵尸进程</strong></p>
+<ul>
+<li><p>由于父子进程的时间长度不同，必然会导致一些父进程会先于子进程退出，这样就会由众进程之祖(init)接管。</p>
+<p>这样的进程就是孤儿进程</p>
+</li>
+<li><p>在父进程执行wait()之前，子进程就已经终止，系统任然允许父进程在之后执行wait()操作，来确定子进程是如何终止的。内核通过将子进程转化为僵尸进程来处理这种情况。子进程会释放大部分的内存，唯一保留的是，内核进程表中的一条记录。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>exec() 程序的执行</p>
+<p>将新程序加载到某一进程的内存。</p>
+<ul>
+<li>文件描述符和exec()</li>
+<li>system()的实现</li>
+</ul>
+</li>
+<li><p>详述进程创建和程序执行</p>
+<ul>
+<li>进程记账 在进程终止时，写入一条记录信息</li>
+<li>系统调用clone()，也可以创建新的进程，对步骤的控制更加精准</li>
+<li>exec()和fork()对进程属性的影响</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><h5 id="概述-包含线程的进程内存模型"><a href="#概述-包含线程的进程内存模型" class="headerlink" title="概述 包含线程的进程内存模型"></a>概述 包含线程的进程内存模型</h5><ul>
+<li>相对多进程的优势<ol>
+<li>多进程数据段和代码段都不复用、内存不共享</li>
+<li>fork()来创建子进程的代价比较高</li>
+</ol>
+</li>
+</ul>
+<h5 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h5><ol>
+<li>加锁和解锁</li>
+<li>只有一个线程能够加锁，其他的会处于阻塞的状态</li>
+</ol>
+<h5 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h5><p>允许一个线程就某个共享变量的状态通知其他线程，并让其他线程等待（堵塞于）这一通知</p>
+<ol>
+<li><p>通知和等待条件变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">condition_variable notfull;</span><br><span class="line">condition_variable notempty;</span><br><span class="line">mutex lock;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 先获取共享变量的锁</span></span><br><span class="line">    unique_lock&lt;mutex&gt; lk(lock);    </span><br><span class="line">    <span class="keyword">while</span>(deq.size() == capacity)&#123;</span><br><span class="line">        <span class="comment">// 当不满足生产条件是，会将这个线程放进 等待状态的线程池，在放进去之前会释放获得的锁</span></span><br><span class="line">        <span class="comment">// 当被唤醒后，依然会检查是否可以生产</span></span><br><span class="line">        not_full.wait(lk);    </span><br><span class="line">    &#125;</span><br><span class="line">    deq.push_back(data);</span><br><span class="line">    lk.unlock();</span><br><span class="line">    not_empty.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">notfull.wait(lk);</span><br><span class="line">notfull.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><p>一个信号量是一个由<strong>内核维护</strong>的整数，其值被限制为大于或等于0。在信号量上可以执行各种系统调用：</p>
+<ol>
+<li>将信号量设置为一个绝对值</li>
+<li>当前值的基础上加上一个数量</li>
+<li>当前值得基础上减去一个数量</li>
+<li>等待信号量的值等于0</li>
+</ol>
+<p>后面两个操作，可能会导致进程的阻塞。</p>
+<p>信号量的系统调用：</p>
+<ol>
+<li>semget() 创建信号量</li>
+<li>semctl() 初始化信号量</li>
+<li>semop() 操作信号量</li>
+<li>semctl IPC_RMID 关闭信号量</li>
+</ol>
+<p>二元信号量的操作：</p>
+<ol>
+<li>预留p</li>
+<li>释放v </li>
+</ol>
+<h4 id="Socket介绍"><a href="#Socket介绍" class="headerlink" title="Socket介绍"></a>Socket介绍</h4><ol>
+<li>fd = socket(domain, type, protocal)<ul>
+<li>Domain unix、ip_v4 、ip_v6</li>
+<li>Type: 流 数据报 分别对应tcp协议和udp协议</li>
+</ul>
+</li>
+</ol>
+<h5 id="流socket"><a href="#流socket" class="headerlink" title="流socket"></a>流socket</h5><ol>
+<li>主动socket (客户端 用connect()发起链接) 和被动socket( 服务器端用listen()将socket设置为被动，及接收请求)</li>
+<li>监听接入连接：int listen(int sockfd, int backlog)<ul>
+<li>sockfd 指定了接收连接的文件socket</li>
+<li>backlog指定了未决连接的数量，实际上是维护了一个待连接请求的队列。这是由于一个连接只能有一个当前的链接导致的，其他的链接只能阻塞。所以在这个限制内的链接请求会立即成功，因为还维护了一个已连接成功的队列。</li>
+</ul>
+</li>
+<li>接收连接：int accept(int sockfd, struct sockaddr <em>addr, socklen_t </em>addrlen)<ul>
+<li>在fd引用的监听流socket上接收一个接入连接。如果没有未决连接就会阻塞</li>
+<li>会创建一个新的socket，并且正式这个新的socket会与执行connect()的对等socket进行连接。所以其返回的是已连接的socket的文件描述符。</li>
+</ul>
+</li>
+<li><p>连接到对等的socket: int connect(int sockfd, struct sockaddr, len) return 0 success -1 fail</p>
+</li>
+<li><p>流socket I/O</p>
+<ul>
+<li>read() and write () 双向的通信</li>
+<li>close() 关闭</li>
+</ul>
+</li>
+</ol>
+<h5 id="数据报socket"><a href="#数据报socket" class="headerlink" title="数据报socket"></a>数据报socket</h5><ol>
+<li>Socket(): 创建一个数据包socket</li>
+<li>Bind(): 允许另外的客户端发送数据报到这里，所以需要绑定一个唯一的地址</li>
+<li>Sendto(): 输入指定的地址，发送数据报到指定的地址</li>
+<li>Recvfrom(): 在接收数据报的同事，会获得客户端的地址，可以在需要的时候发一个响应，这在客户端为绑定唯一地址的情况下也是允许的。</li>
+<li>close()</li>
+</ol>
+<h4 id="TCP-IP-网络基础"><a href="#TCP-IP-网络基础" class="headerlink" title="TCP/IP 网络基础"></a>TCP/IP 网络基础</h4><ol>
+<li>物理层</li>
+<li>数据链路层<ul>
+<li>将IP层的数据报封装为帧进行传输</li>
+<li>MTU 帧大小的上限</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>本机到目标主机之间IP包的传输</li>
+<li>IP传输数据报<ul>
+<li>数据报的大小有上限</li>
+<li>这个上限至少有576字节 对于ipv4</li>
+</ul>
+</li>
+<li>IP是无连接和不可靠的</li>
+<li>IP可能会对数据报进行分段    <ul>
+<li>ipv4的最大的数据包大小为65535字节 + 40 字节头信息</li>
+<li>定义了路径MTU的概念</li>
+<li>分段对于客户端来说是透明的，收到后会进行重组</li>
+</ul>
+</li>
+<li>IP地址</li>
+</ul>
+</li>
+<li>传输层<ol>
+<li>端口号<ol>
+<li>特殊端口 1- 1023</li>
+<li>普通端口</li>
+</ol>
+</li>
+<li>用户数据包协议<ol>
+<li>在数据包前只添加了端口号和一个数据校验和</li>
+<li>无连接和不安全的</li>
+</ol>
+</li>
+<li>传输控制协议<ol>
+<li>流量控制</li>
+<li>慢启动和拥塞控制</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="Internet-Domain"><a href="#Internet-Domain" class="headerlink" title="Internet Domain"></a>Internet Domain</h5><ol>
+<li><p>网络字节序</p>
+<p>多字节整数的存储顺序</p>
+<ul>
+<li>大端模式 1234 先存12 再存34</li>
+<li>小端模式 1234 先存34 再存12</li>
+<li>小端架构是x86架构的机器</li>
+<li>其他主要的硬件架构的字节序都是大端架构</li>
+<li><strong>网络字节序也是大端的</strong></li>
+<li>socket的地址结构中的整数，应该按网络字节序进行存储</li>
+</ul>
+</li>
+<li><p>数据表示</p>
+<p>对传输数据进行的编码</p>
+</li>
+<li><p>主机和服务转换函数</p>
+</li>
+<li>域名系统(DNS)</li>
+</ol>
+<h5 id="深入探讨TCP协议"><a href="#深入探讨TCP协议" class="headerlink" title="深入探讨TCP协议"></a>深入探讨TCP协议</h5><ol>
+<li><p>TCP报文的格式</p>
+<ol>
+<li>源端口号 + 目标端口号 (16 + 16)</li>
+<li>序列号（32）</li>
+<li>确认号（32）</li>
+<li>首部长度 + 保留位 + 控制位 + 窗口大小 (4 + 4 + 8 + 16)</li>
+<li>数据校验和 + 紧急指针 (16 + 16)</li>
+<li>选项</li>
+<li>数据</li>
+</ol>
+<p>控制位：</p>
+<ol>
+<li>CWR 减小窗口大小</li>
+<li>ECE 拥塞控制回显</li>
+<li>URG 紧急包</li>
+<li>ACK 确认包标识</li>
+<li>PSH </li>
+<li>RST 重置连接</li>
+<li>SYN 同步信号标识</li>
+<li>FIN 完成发送任务</li>
+</ol>
+</li>
+<li><p>TCP的序列号和确认机制 </p>
+<p>确保面向连接和安全的</p>
+</li>
+<li><p>TCP协议的状态机和状态迁移图</p>
+</li>
+<li><p>shutdown()支持只关闭一端的通道，变成半双工</p>
+</li>
+<li><p>TTL 生成时间字段</p>
+</li>
+<li><p>为什么TIME_WAIT的时间为2MSL</p>
+<ol>
+<li>防止对方重发可以收到该重发的包</li>
+<li>将上一个连接的包彻底清除</li>
+</ol>
+</li>
+<li><p>监控套接字的cmd</p>
+<p><code>netstat -a</code></p>
+</li>
+<li><p>使用tcpdump来监视TCP流量</p>
+</li>
+</ol>
+<h4 id="其他备选的IO模型"><a href="#其他备选的IO模型" class="headerlink" title="其他备选的IO模型"></a>其他备选的IO模型</h4><p>应用大多数都需要2个方面的要求：</p>
+<ol>
+<li>用非阻塞的方式去进行IO操作</li>
+<li>同时检查多个文件描述符，也就是同时处理多个IO</li>
+</ol>
+<p>这里有三个满足上述要求的选项：</p>
+<ol>
+<li>IO多路复用</li>
+<li>信号驱动I/O</li>
+<li>epoll</li>
+</ol>
+<h5 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h5><ol>
+<li><p>int select(int nfds, fd_set <em>readfds, fd_set </em>wfds, fd_set *exceptfdts, struct timeval time_out)</p>
+<p>将自己需要控制的IO，放到对应的读事件，写事件，异常事件的集合中。</p>
+<p>FD_ZERO and FD_SET对集合进行初始化</p>
+<p>FD_ISSET检查是否就绪</p>
+</li>
+<li><p>int poll(struct pollfd fds[], nfds_t fds_t, timeval timeout)</p>
+<p>fds[] 输入了我们想要监控的fd，以及对应请求的时间，返回中记录了就绪的事件</p>
+</li>
+<li><p>select 和 poll的缺陷</p>
+<ol>
+<li>内核必须检查所有被指定的文件描述符</li>
+<li>在调用的时候。每次都要讲文件描述符的数据结构拷贝到内核</li>
+<li>调用完成后还必须检查所有的文件描述符是否处于就绪态</li>
+</ol>
+</li>
+</ol>
+<h5 id="信号驱动IO"><a href="#信号驱动IO" class="headerlink" title="信号驱动IO"></a>信号驱动IO</h5><ol>
+<li>为内核发送的通知信号安装一个信号处理函数</li>
+<li>设定文件描述符的属主</li>
+<li>使能非阻塞IO</li>
+<li>使能信号驱动IO O_ASYNC</li>
+<li>调用进程可以执行其他的任务</li>
+<li>信号驱动IO使用的是边沿触发，当事件状态发成改变时，发送信号，中断当前的进程，执行信号处理函数</li>
+</ol>
+<h5 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h5><p>epoll由三个系统调用组成</p>
+<ol>
+<li>系统调用epoll_create()创建了一个epoll实例，返回代表该实例的文件描述符</li>
+<li>epoll_ctl() 操作和epoll相关联的兴趣列表，增加，删除、修改新的文件描述符到列表中</li>
+<li>epoll_wait() 返回就绪列表中的成员</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mark Zhan Zha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="线上回滚日记 TEST">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/tx-09/" itemprop="url">数据机构与算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T19:08:13+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/04/tx-09/" class="leancloud_visitors" data-flag-title="数据机构与算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="leetcode列表"><a href="#leetcode列表" class="headerlink" title="leetcode列表"></a>leetcode列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">题目</th>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">解答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">二叉搜索树的第k大节点</td>
+<td style="text-align:center">😊</td>
+<td style="text-align:center">😊</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">实现LRU内存模型</td>
+<td style="text-align:center">😊</td>
+<td style="text-align:center">😊</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">并查集实现最小生成树</td>
+<td style="text-align:center">😊</td>
+<td style="text-align:center">😊</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">最短路径算法</td>
+<td style="text-align:center">🙂</td>
+<td style="text-align:center">🙂</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">重载赋值运算符</td>
+<td style="text-align:center">😀</td>
+<td style="text-align:center">😀</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">调整数组使奇数位于偶数前面</td>
+<td style="text-align:center">😀</td>
+<td style="text-align:center">😀</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">第一个只出现一次的字符</td>
+<td style="text-align:center">😂</td>
+<td style="text-align:center">😂</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">奇偶升降序数组重组</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>解答：</p>
+<ol>
+<li><p>二叉搜索树的第K大节点</p>
+<ul>
+<li><p>解答：二叉搜索树的中序遍历有序的特点</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">midTravelKthest</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    TreeNode* p = root;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;   </span><br><span class="line">    <span class="keyword">while</span>(p || !s.empty())&#123;</span><br><span class="line">        <span class="keyword">if</span>(p)&#123;</span><br><span class="line">          s.push(p);</span><br><span class="line">          p = p-&gt;left;  </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            p = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span> (count == k) &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; p-&gt;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p-&gt;right;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>实现LRU内存模型</p>
+<ul>
+<li><p>解答：</p>
+<ul>
+<li>get操作，先检查pos 优先级set里面是否有该元素，如果有则重新put该k-value。</li>
+<li>put操作，先检查其中pos是否有该key，如果有，则erase该元素 通过iterator，如果没有，则检查元素的个数是否达到了capacity，如果到了就要将list队尾元素erase掉；最后统一的在队列最前面插入元素，并在pos中记录其位置</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRU</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LRU : capacity(<span class="keyword">int</span> ca)&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos.find(key) != pos.end())&#123;</span><br><span class="line">            Put(key, recent[pos[key].second]);</span><br><span class="line">            <span class="keyword">return</span> recent[pos[key]].second;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos.find(key) != pos.end())&#123;</span><br><span class="line">            recent.erase(pos[key]);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (pos.size() &gt;= capacity)&#123;</span><br><span class="line">            pos.erase(recent.back().first);</span><br><span class="line">            recent.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        recent.push_front(&#123;key, val&#125;);</span><br><span class="line">        pos[key] = recent.begin();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; recent;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt; pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;::iterator&gt; pos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>并查集生成找到最小生成树</p>
+<ul>
+<li><p>标签：<strong>并查集</strong></p>
+</li>
+<li><p>解答：最小生成树，是将一个图形成一个连接分量，而这个连接分量的边的权值之和最小。采用贪心法，首先将边按权值大小进行排序。边按大小顺序进行连通，连通前检查该连通的头是否相同，即是否形成环，若形成环则取消该边的加入，若不形成环则将该边加入到连通分量，当连通了所有的点之后，则形成了左右的最小的生成树</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//第一部分完成并查集类的设计</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFindSet</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UnionFindSet(<span class="keyword">int</span> s)&#123;</span><br><span class="line">        size = s;</span><br><span class="line">        parents = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">-1</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(parents[x] &lt; <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">return</span> parents[x] = Find(parents[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> root1, <span class="keyword">int</span> root2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root1 == root2) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(parents[root1] &lt; parents[root2])&#123;</span><br><span class="line">            parents[root2] = root1;</span><br><span class="line">            parents[root1] -= <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            parents[root1] = root2;</span><br><span class="line">            parents[root2] -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parents;</span><br><span class="line">    <span class="keyword">int</span> size;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; krus(<span class="built_in">vector</span>&lt;Edge&gt; edges, <span class="keyword">int</span> n)&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Edge&gt; res;    </span><br><span class="line">    UnionFindSet ufs = <span class="keyword">new</span> UnionFindSet(n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> edge : edges)&#123;</span><br><span class="line">        q.push(edge);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">		Edge temp = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(ufs.Find(temp.begin) == ufs.Find(temp.end))&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           	ufs.Union(ufs.Find(temp.begin), ufs.Find(temp.end));</span><br><span class="line">           	res.push_back(temp);</span><br><span class="line">           	i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>最短路径算法-dijskra算法</p>
+<p>标签：<strong>priority_queue</strong></p>
+<p>解答：算法有几个辅助的存储，</p>
+<ul>
+<li>dis保存每个点到起点的距离的数组</li>
+<li>vis记录是否拜访过</li>
+<li>pre记录通过该点的上一个拜访点</li>
+<li>priority_queue记录了可访问点的集合，保存的是pair&lt;dis, node_id&gt; 该点到起点的最小距离，通过优先级对列每次都将最小距离的点先拜访，这样就形成了最短路径，到该点的距离最短</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Dijkstra</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; temp;</span><br><span class="line">        temp = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( vis[temp-&gt;second] != <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        vis[temp-&gt;second]++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(graph[temp-&gt;second][i] &lt; INT_MAX &amp;&amp; vis[i] != <span class="number">0</span> &amp;&amp; dis[i] &gt; dis[temp-&gt;second] + graph[temp-&gt;second][i])&#123;</span><br><span class="line">                dis[i] = dis[temp-&gt;second] + graph[temp-&gt;second][i];</span><br><span class="line">                pre[i] = temp-&gt;second;</span><br><span class="line">                q.push_back(make_pair(dis[i], i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="错题集"><a href="#错题集" class="headerlink" title="错题集"></a>错题集</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">题目</th>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">解答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">清除注释代码</td>
+<td style="text-align:center">😊</td>
+<td style="text-align:center">😊</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">空缺的第一个正整数</td>
+<td style="text-align:center">😢</td>
+<td style="text-align:center">😢</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">数组组成最小的整数</td>
+<td style="text-align:center">😭</td>
+<td style="text-align:center">😭</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">Knight走棋的最小步骤</td>
+<td style="text-align:center">🙂</td>
+<td style="text-align:center">🙂</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p>remove comments from a given c/c++ program</p>
+<ul>
+<li><strong>标签：c++, string</strong></li>
+<li>解答：指定单行注释标示和多行注释标示，当处理流程为判断当前的是否处在注释期间，处理流程为：<ul>
+<li>如果在单行注释区间，是否当了行尾</li>
+<li>如果在多行注释区间，是否在多行注释结尾</li>
+<li>如果在注释区间，当前字符丢弃</li>
+<li>如果不在注释区间，而找到了单行注释的开头，改变单行注释的标示</li>
+<li>不在注释区间，找到了多行注释的开头，改变多行注释的标示</li>
+<li>如果不在注释区间，也没找到标示，则留下当前字符</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">removeComments</span><span class="params">(<span class="built_in">string</span> prgm)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = prgm.length();</span><br><span class="line">    <span class="built_in">string</span> res;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Flags to indicate that single line and multpile line comments</span></span><br><span class="line">    <span class="comment">// have started or not.</span></span><br><span class="line">    <span class="keyword">bool</span> s_cmt = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">bool</span> m_cmt = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Traverse the given program</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// If single line comment flag is on, then check for end of it</span></span><br><span class="line">        <span class="keyword">if</span> (s_cmt == <span class="literal">true</span> &amp;&amp; prgm[i] == <span class="string">'\n'</span>)</span><br><span class="line">            s_cmt = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// If multiple line comment is on, then check for end of it</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>  (m_cmt == <span class="literal">true</span> &amp;&amp; prgm[i] == <span class="string">'*'</span> &amp;&amp; prgm[i+<span class="number">1</span>] == <span class="string">'/'</span>)</span><br><span class="line">            m_cmt = <span class="literal">false</span>,  i++;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// If this character is in a comment, ignore it</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s_cmt || m_cmt)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Check for beginning of comments and set the approproate flags</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (prgm[i] == <span class="string">'/'</span> &amp;&amp; prgm[i+<span class="number">1</span>] == <span class="string">'/'</span>)</span><br><span class="line">            s_cmt = <span class="literal">true</span>, i++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (prgm[i] == <span class="string">'/'</span> &amp;&amp; prgm[i+<span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">            m_cmt = <span class="literal">true</span>,  i++;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// If current character is a non-comment character, append it to res</span></span><br><span class="line">        <span class="keyword">else</span>  res += prgm[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Driver program to test above functions </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="built_in">string</span> prgm = <span class="string">"   /* Test program */ \n"</span></span><br><span class="line">                  <span class="string">"   int main()  \n"</span></span><br><span class="line">                  <span class="string">"   &#123;           \n"</span></span><br><span class="line">                  <span class="string">"      // variable declaration \n"</span></span><br><span class="line">                  <span class="string">"      int a, b, c;    \n"</span></span><br><span class="line">                  <span class="string">"      /* This is a test  \n"</span></span><br><span class="line">                  <span class="string">"          multiline     \n"</span></span><br><span class="line">                  <span class="string">"          comment for   \n"</span></span><br><span class="line">                  <span class="string">"          testing */      \n"</span></span><br><span class="line">                  <span class="string">"      a = b + c;       \n"</span></span><br><span class="line">                  <span class="string">"   &#125;           \n"</span>; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Given Program \n"</span>; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; prgm &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">" Modified Program "</span>; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; removeComments(prgm); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空缺的第一个正整数</p>
+<ul>
+<li><p>标签：array</p>
+</li>
+<li><p>解答：</p>
+<ul>
+<li>位图法：将每个正整数进行按顺序进行标记</li>
+<li>转换位置法：将数据按其大小放到该放的位置上，速度上较快，缺点：当不是从0开始计数时，则需要先找到最大的数据</li>
+<li>去重后的最小堆：将数据一个个放出，是否满足规则，但是比较慢</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(nums[i] != i + <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> v = nums[i];</span><br><span class="line">            <span class="comment">// 针对从0开始的第一个缺失的数，大于0的数据即可丢失</span></span><br><span class="line">            <span class="keyword">if</span>(v &gt; n || v &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[v<span class="number">-1</span>] == v) <span class="keyword">break</span>;</span><br><span class="line">                swap(nums[v - <span class="number">1</span>], nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] != i + <span class="number">1</span>) <span class="keyword">return</span> i +<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组组成最小的整数</p>
+<p>标签: string</p>
+<p>解法：理解比较算法，通过字符串大小的比较得到字符串相对的位置，最后将字符串的位置串起来就可以得到最后组成的最小的字符串，由于算法题需要证明字符串比较的各种延展和传递性，这里不展开比较。</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by zhanGGe on 2018/10/23.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; N;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; data_s(N, <span class="string">""</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; data_s[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N - i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(data_s[i] &gt; data_s[i+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="built_in">string</span> temp = data_s[i];</span><br><span class="line">                data_s[i] = data_s[i + <span class="number">1</span>];</span><br><span class="line">                data_s[i + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; N; i++)&#123;</span><br><span class="line">        res += data_s[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反思：对string还是不是很熟悉，默认的库里已经对string的各种操作符进行了重载完全可以重新使用包括“+”， “&gt;”等等。对于剑指offer的题目的理解和练习漏洞太多了。</p>
+</li>
+<li><p>knight的最小步数</p>
+<p>关键词： bfs</p>
+<p>解析：当处理图中最小步数问题的时候，直接想到最短路劲问题，最短路径的实现实际上就是利用的bfs，分层去探索不同的路，当找到重点时反馈行走的步数，若队列都pop完了还是没找到，则不可能到达改点返回-1.</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by zhanGGe on 2018/10/23.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> moves[][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">-2</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">-2</span>&#125;, &#123;<span class="number">-2</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-2</span>, <span class="number">1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">2</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pos</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    pos(<span class="keyword">int</span> m, <span class="keyword">int</span> n)&#123;</span><br><span class="line">        x = m;</span><br><span class="line">        y = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;pos&gt; q;</span><br><span class="line">    <span class="function">pos <span class="title">start</span><span class="params">(<span class="number">2</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line">    q.push(start);</span><br><span class="line">    <span class="keyword">int</span> D_x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> D_y = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> M = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> N = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(start.x == D_x &amp;&amp; start.y == D_y) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        count++;</span><br><span class="line">        pos temp = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> move : moves)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = temp.x + move[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> y = temp.y + move[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(x== D_x &amp;&amp; y == D_y)&#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; count &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(x &gt;=<span class="number">0</span> &amp;&amp; x &lt; M &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; M)&#123;</span><br><span class="line">                q.push(pos(x, y));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="number">-1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反思：</p>
+<ul>
+<li>对queue的几个操作还不熟悉<ul>
+<li>front() 返回 队列的头</li>
+<li>back() 返回队列的尾</li>
+<li>push() 插入元素在尾部</li>
+<li>pop() 在头部删除元素  </li>
+</ul>
+</li>
+<li>对于图或者树的BFS的理解不够<ul>
+<li>BFS肯定类似于层次遍历，肯定不能采用递归的方法，需要使用非递归加queue的方法去使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>重载赋值运算符</p>
+<p>解答：这里考虑的主要问题是带类成员变量的类的赋值运算函数的重载要考虑深复制，这里先</p>
+<ul>
+<li><p>复习一下：</p>
+<ul>
+<li><p>赋值运算函数和复制构造函数的区别和运用的场景的不同。</p>
+</li>
+<li><p>复制构造函数： 用于将一个对象复制到新创建的对象中。用于初始化过程中</p>
+<ul>
+<li><p>何时调用：<strong>新建一个对象并将其初始化</strong>为同类的现有对象时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> metoo = motto; <span class="comment">// 调用复制构造函数</span></span><br><span class="line"><span class="built_in">string</span> also = String(motto); <span class="comment">// 先复制构造函数</span></span><br></pre></td></tr></table></figure>
+<p>每当程序生成一个对象的复本，编译器都会先调用的复制构造函数，具体说就是按值传递或函数返回对象的时候，就是说产生临时复本的时候都会调用复制构造函数，所以用值传递减少复制构造函数的调用</p>
+</li>
+<li><p>有何功能：</p>
+<ul>
+<li>默认的复制构造函数会逐个复制非静态的成员函数，复制的是成员的值，所以默认的复制构造函数只是浅复制</li>
+<li>一般要定制显示构造函数进行深度复制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>赋值运算符的重构</p>
+<ul>
+<li>定义：类对象赋值。通过类重载赋值运算符实现。</li>
+<li>何时使用：将已有的一个对象赋值给另外一个对象的时候，将使用重载的运算符</li>
+<li>有何功能：<ul>
+<li>复制数据前会将以前的分配的空间进行释放</li>
+<li>函数应该避免将值赋给自身，因为赋值前会将自己空间进行释放</li>
+<li>函数指向一个指向调用对象的引用，因为需要进行连续的赋值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>引出关于运算符的话题</p>
+<ul>
+<li><p>重载的运算符是选择成为成员函数还是非成员函数</p>
+<ul>
+<li><p>成员函数通过成员进行调动</p>
+</li>
+<li><p>非成员对象不需要成员调动，左边的操作数对应于运算符函数的第一个参数，右边的操作符对应于第二个参数，问题是非成员函数不能访问类的私有数据</p>
+<p>Friend Time operator*(double m, const Time &amp;t);</p>
+</li>
+</ul>
+</li>
+<li><p>双向操作符和单向操作符在重载的时候有区别吗？</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>解法：按上述的三个要点</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">string</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">string</span>(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">    <span class="built_in">string</span>();</span><br><span class="line">    ~<span class="built_in">string</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* str;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1. 返回string &amp;， 这样才可以连续赋值</span></span><br><span class="line"><span class="comment">// 2. 输入的参数为常量引用，引用可以减少复制构造函数调用，由于函数内不会变更实例的状态，需要将输入参数的定义为常量</span></span><br><span class="line"><span class="comment">// 3. 需要将原先对象占据的空间清除</span></span><br><span class="line"><span class="comment">// 4. 赋值操作需要避免赋值给自己，需要检查是否赋值给自己</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> &amp; <span class="built_in">string</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="built_in">string</span> &amp; st)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> == &amp;st) <span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">//避免自己赋值给自己    </span></span><br><span class="line">    <span class="keyword">delete</span>[] str;</span><br><span class="line">    len = st.len;</span><br><span class="line">    str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">strcpy</span>(str, st.str);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升级的代码考虑了异常安全性的原则， 赋值函数内部抛出异常的时候，str由于delete了，会指向不定的地址，导致异常安全性问题，完美的方案是不让空指针产生，让临时的string变量承接输入变量，置换内部的指针和变量，临时变量调用正常调用析构函数释放空间</span></span><br><span class="line"><span class="built_in">string</span>&amp; <span class="built_in">string</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="built_in">string</span> &amp; st)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> != &amp;st)&#123;</span><br><span class="line">        <span class="built_in">string</span> temp(st);</span><br><span class="line">        <span class="keyword">char</span>* pTemp = temp.str;</span><br><span class="line">        temp.str = str;</span><br><span class="line">        str = pTemp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> lenTemp = temp.len;</span><br><span class="line">        temp.len = len;</span><br><span class="line">        len = lenTemp;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>奇偶升降序数组重组</p>
+<p>题目：一个数组奇数位是降序，偶数位是升序，重组数组，将数组从小到大排列，算法复杂度要求是O(n)。</p>
+<p>解法：可以将奇数位数组想成一个带顺序的数组，偶数位数组也是一个带顺序的数组，题目就是一个合并两个排序数组的题目。</p>
+<p>代码:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 张哲 on 2018/11/8.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; MySort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data)&#123;</span><br><span class="line">    <span class="keyword">int</span> len = data.size();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = (len % <span class="number">2</span> == <span class="number">0</span>) ? len <span class="number">-1</span> : len - <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"i: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"j: "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( i &lt;= (len - <span class="number">1</span>) &amp;&amp; (j &gt;= <span class="number">0</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i] &lt; data[j])&#123;</span><br><span class="line">            res.push_back(data[i]);</span><br><span class="line">            i = i + <span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.push_back(data[j]);</span><br><span class="line">            j = j - <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt;= len - <span class="number">1</span>)&#123;</span><br><span class="line">        res.push_back(data[i]);</span><br><span class="line">        i = i+ <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">        res.push_back(data[j]);</span><br><span class="line">        j= j - <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = &#123;<span class="number">0</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">20</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v : MySort(data))&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">" "</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="动态规划专题"><a href="#动态规划专题" class="headerlink" title="动态规划专题"></a>动态规划专题</h4><ol>
+<li><p>最长有效括号对</p>
+</li>
+<li><p>Unique Path II 有障碍物情况下，一点到另外一点的走法</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">题目</th>
+<th style="text-align:center">解答</th>
+<th style="text-align:center">代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">将数据尽量平均的分到两个数组</td>
+<td style="text-align:center"><a href="#jump">🤣</a></td>
+<td style="text-align:center">🤣</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li><p>将数据尽量平均的分到两个数组</p>
+<p>关键词： 动态规划</p>
+<p>解答： 将数组尽量平均的分配到两个数组，可以转化为将数据放到zongzhizongzhi</p>
+</li>
+</ol>
+<h4 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h4><h5 id="TopN的问题"><a href="#TopN的问题" class="headerlink" title="TopN的问题"></a>TopN的问题</h5><ol>
+<li>海量数据中找到重复次数最多的一个</li>
+</ol>
+<h5 id="内存可以放下的TopN问题"><a href="#内存可以放下的TopN问题" class="headerlink" title="内存可以放下的TopN问题"></a>内存可以放下的TopN问题</h5><ol>
+<li>快排降低排序数量</li>
+<li>堆排序，保留topN</li>
+</ol>
+<h4 id="位图法"><a href="#位图法" class="headerlink" title="位图法"></a>位图法</h4><ol>
+<li>在2.5亿数字中找出不重复的数字<ul>
+<li>使用2-bit位图法，00表示不存在，01表示出现一次， 10表示出现多次，11表示无意义。这样需要1G内存</li>
+<li>或者hash划分小文件，小文件使用hash_set检查各个元素，得到不重复的整数</li>
+</ul>
+</li>
+<li><p>如何在40亿数字中判断是否有某个数</p>
+<ul>
+<li>位图法标记某个数是否存在，check标记数组</li>
+</ul>
+</li>
+<li><p>设计题： 设计长链接转短链接</p>
+</li>
+<li>基于范围的查找的数据结构： B+树 和跳表</li>
+<li>散列表扩容的方案</li>
+<li>static 其他文件调用的方法</li>
+</ol>
+<h4 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h4><ul>
+<li><p>是什么？</p>
+<p>霍夫曼树又称最优二叉树，是一种带权路径长度最短的<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%8F%89%E6%A0%91" target="_blank" rel="noopener">二叉树</a>。所谓树的带权路径长度，就是树中所有的叶结点的权值乘上其到根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）。树的路径长度是从树根到每一结点的路径长度之和，记为WPL=（W1<em>L1+W2</em>L2+W3<em>L3+…+Wn</em>Ln），N个权值Wi（i=1,2,…n）构成一棵有N个叶结点的二叉树，相应的叶结点的路径长度为Li（i=1,2,…n）。</p>
+</li>
+<li><p>怎么用？</p>
+<ol>
+<li><p>怎么构建哈夫曼树？</p>
+<p>演算过程[<a href="https://zh.wikipedia.org/w/index.php?title=%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81&amp;action=edit&amp;section=7" target="_blank" rel="noopener">编辑</a>]</p>
+<p><strong>进行霍夫曼编码前，我们先创建一个霍夫曼树。</strong></p>
+<p>⒈将每个英文字母依照出现频率由小排到大，最小在左，如<em>Fig.1</em>。</p>
+<p>⒉每个字母都代表一个终端节点（叶节点），比较<strong>F.O.R.G.E.T</strong>六个字母中每个字母的出现频率，将最小的两个字母频率相加合成一个新的节点。如<em>Fig.2</em>所示，发现<strong>F</strong>与<strong>O</strong>的频率最小，故相加2+3=5。</p>
+<p>⒊比较<strong>5.R.G.E.T</strong>，发现<strong>R</strong>与<strong>G</strong>的频率最小，故相加4+4=8。</p>
+<p>⒋比较<strong>5.8.E.T</strong>，发现<strong>5</strong>与<strong>E</strong>的频率最小，故相加5+5=10。</p>
+<p>⒌比较<strong>8.10.T</strong>，发现<strong>8</strong>与<strong>T</strong>的频率最小，故相加8+7=15。</p>
+<p>⒍最后剩<strong>10.15</strong>，没有可以比较的对象，相加10+15=25。<br><strong>进行编码</strong></p>
+<p>1.给霍夫曼树的所有左链接’0’与右链接’1’。</p>
+<p>2.从树根至树叶依序记录所有字母的编码，如<em>Fig.3</em>。</p>
+</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mark Zhan Zha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="线上回滚日记 TEST">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/tx-07/" itemprop="url">C++语言模块基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T19:08:13+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/04/tx-07/" class="leancloud_visitors" data-flag-title="C++语言模块基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="C-细节探究"><a href="#C-细节探究" class="headerlink" title="C++细节探究"></a>C++细节探究</h3><ol>
+<li><p>模板在编译的时候是怎么编译的?</p>
+<ul>
+<li><p>什么是模板？为什么会有模板？</p>
+<p>继承和包含并不总是满足重用代码的需要。所以会有模板</p>
+<p>C++的类模板是一种生成通用类声明的更好的方法。</p>
+</li>
+<li><p>模板怎么提供通用的类声明</p>
+<p>方法是通过提供参数化类型，将类型名作为参数传给接收方来建立类或函数</p>
+</li>
+<li><p>函数模板和类模板的举例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T&amp; left, <span class="keyword">const</span> T&amp; right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (right &lt; left) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compare&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">//使用模板函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">class</span> <span class="title">Human</span> &#123;</span></span><br><span class="line">        T t;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Human(T test) : t(test)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">Human&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>); <span class="comment">//使用类模板</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>零值比较</p>
+<ul>
+<li>bool: if(ok)</li>
+<li>int: if(ok == 0)</li>
+<li>pointer: if(ok == null) </li>
+<li>float: if(ok &lt;= 1e-5 &amp;&amp; ok &gt;= -1e-5)</li>
+</ul>
+</li>
+<li>sizeof 和 strlen的不同<ul>
+<li>运算符 和 标准库函数</li>
+<li>sizeof 可以运算任何类型的大小 strlen只能得到”\0”结尾的字符串的大小</li>
+<li>sizeof的大小要提前指定好，因为在编译期间就要确定下来</li>
+</ul>
+</li>
+<li>对象之间的复制(类默认赋值函数)<ul>
+<li>可以赋值，当存在指针成员变量时，要提前的深拷贝</li>
+<li>深拷贝和浅拷贝的区别</li>
+</ul>
+</li>
+<li>static的作用<ul>
+<li>全局静态变量 限制了变量的作用域，只能在本文件中被使用</li>
+<li>局部静态变量 由于存储在静态区，延长了变量的使用时间，只有程序结束的时候，该变量的生命周期才结束。</li>
+<li>修饰类成员(变量 和 函数) 所有的实例共有</li>
+<li>满足函数在不同调用期的通信，满足不同类对象之间的通信-&gt; 单例模式</li>
+<li>static的默认值是0</li>
+</ul>
+</li>
+<li><p>结构体和类的区别</p>
+<ul>
+<li>结构体的默认访问权限是pubic 类是private</li>
+</ul>
+</li>
+<li>malloc 和 new 的区别<ul>
+<li>malloc和free 是标准库函数， new和delete是运算符</li>
+<li>malloc分配空间后，不能吊起构造函数， free也不能吊起构造函数； new吊起构造函数， delete调起析构函数</li>
+<li>malloc返回void指针， new返回对应类指针</li>
+</ul>
+</li>
+<li>指针和引用的区别 <ul>
+<li>引用只是给变量起了一个别名，不占内存空间。 指针是新分配了一个指针的空间</li>
+<li>引用声明时必须初始化，指针可以先申明再初始化</li>
+<li>引用只能指定一个变量，指针可以先指向一个变量，然后再指向另一个变量</li>
+<li>引用必须指向一个变量的实体，指针可以是一个空指针</li>
+</ul>
+</li>
+<li>宏定义和函数的区别<ul>
+<li>宏定义在预编译时就替换了代码，相当于直接插入了代码，运行时不需要跳转；函数运行需要跳转</li>
+<li>宏定义没有类型检查；函数有类型的检查</li>
+</ul>
+</li>
+<li>宏定义和const的区别<ul>
+<li>宏定义在预编译阶段；const在编译的阶段</li>
+<li>宏没有类型检查； const有类型检查</li>
+<li>没有分配空间，直接代码插入； const要占据内存空间</li>
+</ul>
+</li>
+<li>宏定义和typedef的区别<ul>
+<li>宏定义主要用于常量和复杂函数的表示；typedef主要用于类型的别名</li>
+<li>编译前替换；typedef还是在编译期间</li>
+</ul>
+</li>
+<li>宏定义和内联函数的区别<ul>
+<li>内联函数也是函数，在编译期间起作用，也可以做类型检查</li>
+<li>具有函数的重载等功能</li>
+<li>内联函数可以作为类的成员函数使用类的保护成员和私有成员</li>
+</ul>
+</li>
+<li>数组名和指针的区别<ul>
+<li>可以将数组名理解为常量指针，所以没有自增和自减的操作</li>
+<li>数组名传递给一般指针后就退化了，sizeof就计算不出整个数组的大小</li>
+</ul>
+</li>
+</ol>
+<h3 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a>面向对象基础</h3><ol>
+<li>三大特性<ul>
+<li>封装性</li>
+<li>继承性</li>
+<li>多态性</li>
+<li>模板特性(c++)</li>
+</ul>
+</li>
+<li>public/protected/private的区别<ul>
+<li>public ，类的内部和外部都可以访问</li>
+<li>protected，只有类的内部成员或者派生类中可以访问</li>
+<li>private， 类的内部成员访问派生类内部不可以访问</li>
+</ul>
+</li>
+<li>对象的存储空间<ul>
+<li>非静态成员的数据类型大小之和</li>
+<li>编译器额外加入的虚函数指针变量，指向虚表，虚表保存的是虚函数的地址的列表</li>
+<li>还有一些对齐的padding</li>
+</ul>
+</li>
+<li>空类的大小和有哪些成员函数？<ul>
+<li>空类的大小为1字节</li>
+<li>成员函数有：<ul>
+<li>构造函数</li>
+<li>析构函数</li>
+<li>默认拷贝函数</li>
+<li>默认赋值运算符</li>
+<li>取地址函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>构造函数和析构函数必须是基类指针吗？<ul>
+<li>构造函数<ul>
+<li>构造函数不能是虚函数，虚函数的作用在于通过子类的指针或引用来调用父类的那个成员函数。而构造函数是在创建对象时自己主动调用的，不可能通过子类的指针或者引用去调用。</li>
+</ul>
+</li>
+<li>析构函数<ul>
+<li>析构函数一般都要为虚函数，</li>
+<li>只有当析构函数为虚函数时，delete调一个基类指针的类时，才会调起对应的子类的析构函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>构造函数和析构函数的调用顺序是？<ul>
+<li>构造函数(从初始化列表的运行顺序可看出)<ul>
+<li>基类构造函数：多层基类则先构造最上层的基类，依次向外，如果是多继承则从左到右</li>
+<li>成员变量的构造函数： 先构造成员变量的构造函数，然后调用本类的构造函数</li>
+<li>派生类的构造函数</li>
+</ul>
+</li>
+<li>析构函数<ul>
+<li>析构顺序与构造顺序相反</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拷贝构造函数和赋值运算函数的区别？<ul>
+<li>拷贝构造函数是函数，赋值运算符是运算符重载。</li>
+<li>拷贝构造函数会生成新的对像，赋值运算符不会</li>
+<li>在形参传递的时候是调用拷贝构造函数，因为生成了本地的新对象</li>
+</ul>
+</li>
+<li>覆盖、隐藏和重载的区别<ul>
+<li>重载，在相同的类或作用域下，当函数名相同，参数不同的情况就发生了函数的重载</li>
+<li>覆盖，当虚函数在派生类中对虚函数进行了实现的时候，派生类的虚函数地址对原虚函数的地址进行了覆盖</li>
+<li>隐藏，派生类本来是集成了基类的成员函数，当派生类又实现了基类函数，而且这个基类成员函数还不是虚函数的情况下，就会把基类成员函数给隐藏，不管参数时候相同。</li>
+</ul>
+</li>
+<li>哪几种情况需要用到初始化列表<ul>
+<li>初始化const成员</li>
+<li>初始化一个reference成员</li>
+<li>调用基类的构造函数，并且该函数需要参数</li>
+<li>调用数据成员对象的构造函数，而该函数需要参数</li>
+</ul>
+</li>
+</ol>
+<h3 id="STL-标准模板库"><a href="#STL-标准模板库" class="headerlink" title="STL(标准模板库)"></a>STL(标准模板库)</h3><ol>
+<li><p>Vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">定义：</span><br><span class="line">	<span class="built_in">vector</span>&lt;T&gt; vec;</span><br><span class="line">插入元素：</span><br><span class="line">	vec.push_back(T);</span><br><span class="line">	vec.insert(iterator, T);</span><br><span class="line">删除元素：</span><br><span class="line">	vec.pop_back();</span><br><span class="line">	vec.erase(iterator);</span><br><span class="line">修改元素:</span><br><span class="line">	vec[position] = T;</span><br><span class="line">遍历容器：</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = vec.begin(); it &lt; vec.end(); it++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">其他：</span><br><span class="line">	vec.empty();</span><br><span class="line">	vec.size();</span><br><span class="line">	vec.capacity();</span><br><span class="line">	vec.begin();</span><br><span class="line">	vec.end();</span><br></pre></td></tr></table></figure>
+<p>实现：</p>
+<ul>
+<li>线性表，数组实现：<ul>
+<li>支持随机访问</li>
+<li>插入删除操作需要大量的移动元素</li>
+</ul>
+</li>
+<li>需要连续的物理存储空间</li>
+<li>当空间不够及 size &lt; capacity 的时候，需要空间拓展*2</li>
+</ul>
+<p>迭代器失效：</p>
+<ul>
+<li>插入元素：<ul>
+<li>尾后插入，当size &lt; capacity时， 首迭代器不失效，其他失效。 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>map</p>
+<p>实现：</p>
+<ul>
+<li>树状结构，插入和删除操作不需要数据的复制，不连续的内存空间</li>
+<li>操作复杂度和树的高度相关</li>
+</ul>
+<p>红黑树的基本概念：</p>
+<ul>
+<li><p>红黑树是二叉排序树</p>
+<ul>
+<li>左子树的所有元素都比根节点小</li>
+<li>右子树所有节点都比根节点大</li>
+<li>左右子树也都是二叉排序树</li>
+</ul>
+</li>
+<li><p>而且还要满足几点要求</p>
+<ul>
+<li>树中所有节点非黑即红</li>
+<li>根节点必须是黑色</li>
+<li>红色节点的子节点必须为黑</li>
+<li>从根到NULL的任何路径上黑节点的数量必须相同</li>
+</ul>
+</li>
+<li><p>查找时间都是O(logn)</p>
+</li>
+<li><p>红黑树节点的定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color &#123;</span><br><span class="line">    red 	= <span class="number">0</span>;</span><br><span class="line">    black 	= <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RBTreeNode</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">RBTreeNode</span>* <span class="title">left</span>, *<span class="title">right</span>, *<span class="title">parent</span>;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Color col;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>相对于平衡二叉树，平衡性稍差但是旋转次数会降低</li>
+<li>相对于普通的二叉查找树，平衡性要好，查找效率要高</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>set</p>
+<p>常用操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">st.insert(<span class="number">1</span>);</span><br><span class="line">st.erase(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">st.find(<span class="number">1</span>);</span><br><span class="line">st.count(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="编程基础"><a href="#编程基础" class="headerlink" title="编程基础"></a>编程基础</h3><ol>
+<li>为什么会有C++，相对于C语言的升级在哪？<ul>
+<li>添加了了面向对象编程</li>
+<li>继承了C语言高效、简洁、快速和可移植的特点。</li>
+<li>添加了泛型编程方法</li>
+</ul>
+</li>
+<li>C/C++语言的历史发展和必要性</li>
+<li>条件编译#ifdef, #else, #endif作用？<ul>
+<li>通过#ifdef来判断，将某些具体的模块包括到要编译的内容 ，只判断之前是否有该宏定义</li>
+<li>子程序前加#define DEBUG 用于程序调试</li>
+<li>应对硬件的设置</li>
+<li>条件编译可以减少被编译的语句</li>
+</ul>
+</li>
+</ol>
+<h3 id="编译和调试"><a href="#编译和调试" class="headerlink" title="编译和调试"></a>编译和调试</h3><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><h5 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h5><ul>
+<li><p>宏定义的替换 <code>#define</code></p>
+</li>
+<li><p>条件编译语句过滤代码  <code>#ifdef</code></p>
+</li>
+<li><p>处理#include指令，插入对应的文件到指令的位置 <code>#include</code></p>
+</li>
+<li><p>过滤所有的注释的语句</p>
+</li>
+<li>添加行号和文件名标识</li>
+<li>保留所有的#program编译器指令 <code>#program</code></li>
+</ul>
+<h5 id="编译-1"><a href="#编译-1" class="headerlink" title="编译"></a>编译</h5><ul>
+<li>词法分析<ul>
+<li>读取源程序的字符，生成词法单元序列</li>
+</ul>
+</li>
+<li>语法分析</li>
+<li>语义分析</li>
+<li>中间语言生成 汇编</li>
+<li>目标代码生成与优化 二进制代码</li>
+</ul>
+<h5 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h5><p> 各个源代码模块独立的被编译，然后将他们组整起来，组装的过程就是链接。将所有目标文件的代码段拼接到一起，然后将所有对符号地址的引用加以修正。</p>
+<ul>
+<li><p>静态链接</p>
+<p>在编译时和静态库(lib<em>**</em>.a)链接在一起成为完成的程序。通常静态库就是对多目标文件(.o)文件的打包。细节：静态链接被用到的目标文件都会复制到最终生成的可执行文件中。这种方式的好处是在运行时，可执行文件已尽装载完毕，速度比较快。</p>
+<p>静态文件是对多目标文件的打包，这里介绍些打包命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -c test1.c // 生成test1.c</span><br><span class="line">gcc -c test2.c // 生test2.c</span><br><span class="line">ar cr libtest.a test1.o test2.o</span><br></pre></td></tr></table></figure>
+<p>在生成可执行文件需要使用到它的时候只需要在编译时加上即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c -ltest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态链接</p>
+<p>多个程序都需要某个静态库，在每个程序中都需要拷贝一份，所以出现动态链接来解决这个问题。</p>
+<p>首先打包成动态库，文件名为lib + 动态库名+ .so 后缀。编译时加上-fPIC选项，打包时加上-shared选项。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -c test1.c</span><br><span class="line">gcc -fPIC -c test2.c</span><br><span class="line">gcc -shared test1.o test2.o libtest.so</span><br></pre></td></tr></table></figure>
+<p>使用动态链接的用法和静态链接相同</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c -ltest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态链接库和动态链接库的对比</p>
+<ul>
+<li>动态链接库运行时会先检查内存中是否存在该库的拷贝，若有则共享拷贝，标准模版库就是动态链接库。</li>
+<li>动态链接库的升级更新很容易</li>
+<li>静态链接库执行效率会比较高</li>
+</ul>
+</li>
+<li><p>静态联编和动态联编的区别</p>
+</li>
+</ul>
+<p>makefile编写</p>
+<p>自动化编译的工具</p>
+<ul>
+<li><p>基本规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A:B</span><br><span class="line">(tab)&lt;command&gt;</span><br></pre></td></tr></table></figure>
+<p>A是语句最后生成的文件，B是生成A所依赖的文件，比如生成test.o依赖test.c 和 test.h, 则写成 test.o:test.c test.h。接下来一行的开头必须是tab ，再往下就是实际的命令, 比如 gcc.c -c test.c -o test.o 。</p>
+</li>
+<li><p>变量</p>
+<p>在文件中可以定义变量，在之后需要使用的时候只需要写一个$符号加上变量名即可。</p>
+</li>
+<li><p>自动寻找依赖</p>
+<p>第一条目标即为编译输出的目标，程序会依次寻找依赖的关系，当依赖不存在时，贼寻找下面的生成目标形成隐形的依赖生成</p>
+</li>
+</ul>
+<p>调试</p>
+<p>符号解析</p>
+<ul>
+<li><p>可重定位目标文件 (relocatable file)</p>
+<p>独立编译后的(.o)文件，其ELF文件格式包括：</p>
+<ul>
+<li>ELF头，指定文件的大小及字节序</li>
+<li>.text， 代码段</li>
+<li>.rodata, 只读数据区</li>
+<li>.data，已初始化数据区</li>
+<li>.bss，未初始化数据区</li>
+<li>.symtab，符号表</li>
+</ul>
+</li>
+<li><p>解析符号表</p>
+<ul>
+<li>将每个引用和文件中的符号表的一个符号定义联系起来</li>
+</ul>
+</li>
+</ul>
+<p>重定位</p>
+<ul>
+<li><p>合并节</p>
+<p>多个可重定向目标文件中的相同的节合并成一个完整的聚合节，例如多个目标文件的.data节合并为可执行文件的.data节。</p>
+</li>
+<li><p>重定位符号引用</p>
+<p>修改全部代码节和数据节对每个符号的引用，执行正确的运行时地址。</p>
+</li>
+</ul>
+<h5 id="可执行目标文件"><a href="#可执行目标文件" class="headerlink" title="可执行目标文件"></a>可执行目标文件</h5><ul>
+<li><p>ELF头部</p>
+<p>描述文件的总体格式，并且包括程序的入口点，即第一条指令地址</p>
+</li>
+<li><p>段头部表</p>
+<p>描述了可执行文件数据段、代码段等各段的大小、虚拟地址、段对其、执行权限等。通过段头部表描绘了虚拟存储器运行时存储映像，比如每个unix程序的代码段总从虚拟地址的Ox0804800开始。</p>
+</li>
+<li><p>其他段</p>
+<p>和可重定位目标文件相同，但是完成了多个节的合并和重定位的工作</p>
+</li>
+</ul>
+<h5 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h5><ul>
+<li><p>克隆</p>
+<p>新程序的执行首先要父进程fork()得到一个子进程，该子进程除了pid等标识不同其他基本均与父进程相同。</p>
+</li>
+<li><p>重新映射</p>
+<p>当子进程执行自己的系统调用时，会先清空子进程现有的虚拟存储段(不再映射到父进程到各个段)，之后重新创建子进程虚拟存储器各段和可执行文件各段的映射。可理解为对复制进来的父进程页表进行重写，映射到外存中的各个段。</p>
+</li>
+<li><p>虚页调入</p>
+<p>加载器跳转到入口地址_start开始执行程序，接下来的过程需要配合虚拟存储器来完成。CPU获得了指令的虚拟地址后，若该指令不再内存中，则从外存中调入。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,519 +2121,7 @@
 </ul>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/tx-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mark Zhan Zha">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="线上回滚日记 TEST">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/04/tx-07/" itemprop="url">C++语言模块基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T19:08:13+08:00">
-                2018-10-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/04/tx-07/" class="leancloud_visitors" data-flag-title="C++语言模块基础">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="C-细节探究"><a href="#C-细节探究" class="headerlink" title="C++细节探究"></a>C++细节探究</h3><ol>
-<li><p>模板在编译的时候是怎么编译的?</p>
-<ul>
-<li><p>什么是模板？为什么会有模板？</p>
-<p>继承和包含并不总是满足重用代码的需要。所以会有模板</p>
-<p>C++的类模板是一种生成通用类声明的更好的方法。</p>
-</li>
-<li><p>模板怎么提供通用的类声明</p>
-<p>方法是通过提供参数化类型，将类型名作为参数传给接收方来建立类或函数</p>
-</li>
-<li><p>函数模板和类模板的举</p>
-</li>
-</ul>
-</li>
-<li><p>零值比较</p>
-<ul>
-<li>bool: if(ok)</li>
-<li>int: if(ok == 0)</li>
-<li>pointer: if(ok == null)</li>
-<li>float: if(ok &lt;= 1e-5 &amp;&amp; ok &gt;= -1e-5)</li>
-</ul>
-</li>
-<li>sizeof 和 strlen的不同<ul>
-<li>运算符 和 标准库函数</li>
-<li>sizeof 可以运算任何类型的大小 strlen只能得到”\0”结尾的字符串的大小</li>
-<li>sizeof的大小要提前指定好，因为在编译期间就要确定下来</li>
-</ul>
-</li>
-<li>对象之间的复制(类默认赋值函数)<ul>
-<li>可以赋值，当存在指针成员变量时，要提前的深拷贝</li>
-<li>深拷贝和浅拷贝的区别</li>
-</ul>
-</li>
-<li>static的作用<ul>
-<li>全局静态变量 限制了变量的作用域，只能在本文件中被使用</li>
-<li>局部静态变量 由于存储在静态区，延长了变量的使用时间，只有程序结束的时候，该变量的生命周期才结束。</li>
-<li>修饰类成员(变量 和 函数) 所有的实例共有</li>
-<li>满足函数在不同调用期的通信，满足不同类对象之间的通信-&gt; 单例模式</li>
-<li>static的默认值是0</li>
-</ul>
-</li>
-<li><p>结构体和类的区别</p>
-<ul>
-<li>结构体的默认访问权限是pubic 类是private</li>
-</ul>
-</li>
-<li>malloc 和 new 的区别<ul>
-<li>malloc和free 是标准库函数， new和delete是运算符</li>
-<li>malloc分配空间后，不能吊起构造函数， free也不能吊起构造函数； new吊起构造函数， delete调起析构函数</li>
-<li>malloc返回void指针， new返回对应类指针</li>
-</ul>
-</li>
-<li>指针和引用的区别 <ul>
-<li>引用只是给变量起了一个别名，不占内存空间。 指针是新分配了一个指针的空间</li>
-<li>引用声明时必须初始化，指针可以先申明再初始化</li>
-<li>引用只能指定一个变量，指针可以先指向一个变量，然后再指向另一个变量</li>
-<li>引用必须指向一个变量的实体，指针可以是一个空指针</li>
-</ul>
-</li>
-<li>宏定义和函数的区别<ul>
-<li>宏定义在预编译时就替换了代码，相当于直接插入了代码，运行时不需要跳转；函数运行需要跳转</li>
-<li>宏定义没有类型检查；函数有类型的检查</li>
-</ul>
-</li>
-<li>宏定义和const的区别<ul>
-<li>宏定义在预编译阶段；const在编译的阶段</li>
-<li>宏没有类型检查； const有类型检查</li>
-<li>没有分配空间，直接代码插入； const要占据内存空间</li>
-</ul>
-</li>
-<li>宏定义和typedef的区别<ul>
-<li>宏定义主要用于常量和复杂函数的表示；typedef主要用于类型的别名</li>
-<li>编译前替换；typedef还是在编译期间</li>
-</ul>
-</li>
-<li>宏定义和内联函数的区别<ul>
-<li>内联函数也是函数，在编译期间起作用，也可以做类型检查</li>
-<li>具有函数的重载等功能</li>
-<li>内联函数可以作为类的成员函数使用类的保护成员和私有成员</li>
-</ul>
-</li>
-<li>数组名和指针的区别<ul>
-<li>可以将数组名理解为常量指针，所以没有自增和自减的操作</li>
-<li>数组名传递给一般指针后就退化了，sizeof就计算不出整个数组的大小</li>
-</ul>
-</li>
-</ol>
-<h3 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a>面向对象基础</h3><ol>
-<li>三大特性<ul>
-<li>封装性</li>
-<li>继承性</li>
-<li>k多态性</li>
-<li>模板特性(c++)</li>
-</ul>
-</li>
-<li>public/protected/private的区别<ul>
-<li>public ，类的内部和外部都可以访问</li>
-<li>protected，只有类的内部成员或者派生类中可以访问</li>
-<li>private， 类的内部成员访问派生类内部不可以访问</li>
-</ul>
-</li>
-<li>对象的存储空间<ul>
-<li>非静态成员的数据类型大小之和</li>
-<li>编译器额外加入的虚函数指针变量，指向虚表，虚表保存的是虚函数的地址的列表</li>
-<li>还有一些对齐的padding</li>
-</ul>
-</li>
-<li>空类的大小和有哪些成员函数？<ul>
-<li>空类的大小为1字节</li>
-<li>成员函数有：<ul>
-<li>构造函数</li>
-<li>析构函数</li>
-<li>默认拷贝函数</li>
-<li>默认赋值函数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>构造函数和析构函数必须是基类指针吗？<ul>
-<li>构造函数<ul>
-<li>构造函数不能是虚函数，虚函数的作用在于通过子类的指针或引用来调用父类的那个成员函数。而构造函数是在创建对象时自己主动调用的，不可能通过子类的指针或者引用去调用。</li>
-</ul>
-</li>
-<li>析构函数<ul>
-<li>析构函数一般都要为虚函数，</li>
-<li>只有当析构函数为虚函数时，delete调一个基类指针的类时，才会调起对应的子类的析构函数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>构造函数和析构函数的调用顺序是？<ul>
-<li>构造函数(从初始化列表的运行顺序可看出)<ul>
-<li>基类构造函数：多层基类则先构造最上层的基类，依次向外，如果是多继承则从左到右</li>
-<li>成员变量的构造函数： 先构造成员变量的构造函数，然后调用本类的构造函数</li>
-<li>派生类的构造函数</li>
-</ul>
-</li>
-<li>析构函数<ul>
-<li>析构顺序与构造顺序相反</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>拷贝构造函数和赋值运算函数的区别？<ul>
-<li>拷贝构造函数是函数，赋值运算符是运算符重载。</li>
-<li>拷贝构造函数会生成新的对像，赋值运算符不会</li>
-<li>在形参传递的时候是调用拷贝构造函数，因为生成了本地的新对象</li>
-</ul>
-</li>
-<li>覆盖、隐藏和重载的区别<ul>
-<li>重载，在相同的类或作用域下，当函数名相同，参数不同的情况就发生了函数的重载</li>
-<li>覆盖，当虚函数在派生类中对虚函数进行了实现的时候，派生类的虚函数地址对原虚函数的地址进行了覆盖</li>
-<li>隐藏，派生类本来是集成了基类的成员函数，当派生类又实现了基类函数，而且这个基类成员函数还不是虚函数的情况下，就会把基类成员函数给隐藏，不管参数时候相同。</li>
-</ul>
-</li>
-<li>哪几种情况需要用到初始化列表<ul>
-<li>初始化const成员</li>
-<li>初始化一个reference成员</li>
-<li>调用基类的构造函数，并且该函数需要参数</li>
-<li>调用数据成员对象的构造函数，而该函数需要参数</li>
-</ul>
-</li>
-</ol>
-<h3 id="STL-标准模板库"><a href="#STL-标准模板库" class="headerlink" title="STL(标准模板库)"></a>STL(标准模板库)</h3><ol>
-<li><p>Vector</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">定义：</span><br><span class="line">	<span class="built_in">vector</span>&lt;T&gt; vec;</span><br><span class="line">插入元素：</span><br><span class="line">	vec.push_back(T);</span><br><span class="line">	vec.insert(iterator, T);</span><br><span class="line">删除元素：</span><br><span class="line">	vec.pop_back();</span><br><span class="line">	vec.erase(iterator);</span><br><span class="line">修改元素:</span><br><span class="line">	vec[position] = T;</span><br><span class="line">遍历容器：</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = vec.begin(); it &lt; vec.end(); it++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">其他：</span><br><span class="line">	vec.empty();</span><br><span class="line">	vec.size();</span><br><span class="line">	vec.capacity();</span><br><span class="line">	vec.begin();</span><br><span class="line">	vec.end();</span><br></pre></td></tr></table></figure>
-<p>实现：</p>
-<ul>
-<li>线性表，数组实现：<ul>
-<li>支持随机访问</li>
-<li>插入删除操作需要大量的移动元素</li>
-</ul>
-</li>
-<li>需要连续的物理存储空间</li>
-<li>当空间不够及 size &lt; capacity 的时候，需要空间拓展*2</li>
-</ul>
-<p>迭代器失效：</p>
-<ul>
-<li>插入元素：<ul>
-<li>尾后插入，当size &lt; capacity时， 首迭代器不失效，其他失效。 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>map</p>
-<p>实现：</p>
-<ul>
-<li>树状结构，插入和删除操作不需要数据的复制，不连续的内存空间</li>
-<li>操作复杂度和树的高度相关</li>
-</ul>
-<p>红黑树的基本概念：</p>
-<ul>
-<li><p>红黑树是二叉排序树</p>
-<ul>
-<li>左子树的所有元素都比根节点小</li>
-<li>右子树所有节点都比根节点大</li>
-<li>左右子树也都是二叉排序树</li>
-</ul>
-</li>
-<li><p>而且还要满足几点要求</p>
-<ul>
-<li>树中所有节点非黑即白</li>
-<li>根节点必须是黑色</li>
-<li>红色节点的子节点必须为黑</li>
-<li>从根到NULL的任何路径上黑节点的数量必须相同</li>
-</ul>
-</li>
-<li><p>查找时间都是O(logn)</p>
-</li>
-<li><p>红黑树节点的定义</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color &#123;</span><br><span class="line">    red 	= <span class="number">0</span>;</span><br><span class="line">    black 	= <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RBTreeNode</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">RBTreeNode</span>* <span class="title">left</span>, *<span class="title">right</span>, *<span class="title">parent</span>;</span></span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Color col;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>相对于平衡二叉树，平衡性稍差但是旋转次数会降低</li>
-<li>相对于普通的二叉查找树，平衡性要好，查找效率要高</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>set</p>
-<p>常用操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">st.insert(<span class="number">1</span>);</span><br><span class="line">st.erase(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">st.find(<span class="number">1</span>);</span><br><span class="line">st.count(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="编程基础"><a href="#编程基础" class="headerlink" title="编程基础"></a>编程基础</h3><ol>
-<li>为什么会有C++，相对于C语言的升级在哪？<ul>
-<li>添加了了面向对象编程</li>
-<li>继承了C语言高效、简洁、快速和可移植的特点。</li>
-<li>添加了泛型编程方法</li>
-</ul>
-</li>
-<li>C/C++语言的历史发展和必要性</li>
-<li>条件编译#ifdef, #else, #endif作用？<ul>
-<li>通过#ifdef来判断，将某些具体的模块包括到要编译的内容 ，只判断之前是否有该宏定义</li>
-<li>子程序前加#define DEBUG 用于程序调试</li>
-<li>应对硬件的设置</li>
-<li>条件编译可以减少被编译的语句</li>
-</ul>
-</li>
-</ol>
-<h3 id="编译和调试"><a href="#编译和调试" class="headerlink" title="编译和调试"></a>编译和调试</h3><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><h5 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h5><ul>
-<li><p>宏定义的替换 <code>#define</code></p>
-</li>
-<li><p>条件编译语句过滤代码  <code>#ifdef</code></p>
-</li>
-<li><p>处理#include指令，插入对应的文件到指令的位置 <code>#include</code></p>
-</li>
-<li><p>过滤所有的注释的语句</p>
-</li>
-<li>添加行号和文件名标识</li>
-<li>保留所有的#program编译器指令 <code>#program</code></li>
-</ul>
-<h5 id="编译-1"><a href="#编译-1" class="headerlink" title="编译"></a>编译</h5><ul>
-<li>词法分析<ul>
-<li>读取源程序的字符，生成词法单元序列</li>
-</ul>
-</li>
-<li>语法分析</li>
-<li>语义分析</li>
-<li>中间语言生成 汇编</li>
-<li>目标代码生成与优化 二进制代码</li>
-</ul>
-<h5 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h5><p> 各个源代码模块独立的被编译，然后将他们组整起来，组装的过程就是链接。将所有目标文件的代码段拼接到一起，然后将所有对符号地址的引用加以修正。</p>
-<ul>
-<li><p>静态链接</p>
-<p>在编译时和静态库(lib<em>**</em>.a)链接在一起成为完成的程序。通常静态库就是对多目标文件(.o)文件的打包。细节：静态链接被用到的目标文件都会复制到最终生成的可执行文件中。这种方式的好处是在运行时，可执行文件已尽装载完毕，速度比较快。</p>
-<p>静态文件是对多目标文件的打包，这里介绍些打包命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -c test1.c // 生成test1.c</span><br><span class="line">gcc -c test2.c // 生test2.c</span><br><span class="line">ar cr libtest.a test1.o test2.o</span><br></pre></td></tr></table></figure>
-<p>在生成可执行文件需要使用到它的时候只需要在编译时加上即可。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c -ltest</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态链接</p>
-<p>多个程序都需要某个静态库，在每个程序中都需要拷贝一份，所以出现动态链接来解决这个问题。</p>
-<p>首先打包成动态库，文件名为lib + 动态库名+ .so 后缀。编译时加上-fPIC选项，打包时加上-shared选项。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -c test1.c</span><br><span class="line">gcc -fPIC -c test2.c</span><br><span class="line">gcc -shared test1.o test2.o libtest.so</span><br></pre></td></tr></table></figure>
-<p>使用动态链接的用法和静态链接相同</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c -ltest</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>静态链接库和动态链接库的对比</p>
-<ul>
-<li>动态链接库运行时会先检查内存中是否存在该库的拷贝，若有则共享拷贝，标准模版库就是动态链接库。</li>
-<li>动态链接库的升级更新很容易</li>
-<li>静态链接库执行效率会比较高</li>
-</ul>
-</li>
-<li><p>静态联编和动态联编的区别</p>
-</li>
-</ul>
-<p>makefile编写</p>
-<p>自动化编译的工具</p>
-<ul>
-<li><p>基本规则</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A:B</span><br><span class="line">(tab)&lt;command&gt;</span><br></pre></td></tr></table></figure>
-<p>A是语句最后生成的文件，B是生成A所依赖的文件，比如生成test.o依赖test.c 和 test.h, 则写成 test.o:test.c test.h。接下来一行的开头必须是tab ，再往下就是实际的命令, 比如 gcc.c -c test.c -o test.o 。</p>
-</li>
-<li><p>变量</p>
-<p>在文件中可以定义变量，在之后需要使用的时候只需要写一个$符号加上变量名即可。</p>
-</li>
-<li><p>自动寻找依赖</p>
-<p>第一条目标即为编译输出的目标，程序会依次寻找依赖的关系，当依赖不存在时，贼寻找下面的生成目标形成隐形的依赖生成</p>
-</li>
-</ul>
-<p>调试</p>
-<p>符号解析</p>
-<ul>
-<li><p>可重定位目标文件 (relocatable file)</p>
-<p>独立编译后的(.o)文件，其ELF文件格式包括：</p>
-<ul>
-<li>ELF头，指定文件的大小及字节序</li>
-<li>.text， 代码段</li>
-<li>.rodata, 只读数据区</li>
-<li>.data，已初始化数据区</li>
-<li>.bss，未初始化数据区</li>
-<li>.symtab，符号表</li>
-</ul>
-</li>
-<li><p>解析符号表</p>
-<ul>
-<li>将每个引用和文件中的符号表的一个符号定义联系起来</li>
-</ul>
-</li>
-</ul>
-<p>重定位</p>
-<ul>
-<li><p>合并节</p>
-<p>多个可重定向目标文件中的相同的节合并成一个完整的聚合节，例如多个目标文件的.data节合并为可执行文件的.data节。</p>
-</li>
-<li><p>重定位符号引用</p>
-<p>修改全部代码节和数据节对每个符号的引用，执行正确的运行时地址。</p>
-</li>
-</ul>
-<h5 id="可执行目标文件"><a href="#可执行目标文件" class="headerlink" title="可执行目标文件"></a>可执行目标文件</h5><ul>
-<li><p>ELF头部</p>
-<p>描述文件的总体格式，并且包括程序的入口点，即第一条指令地址</p>
-</li>
-<li><p>段头部表</p>
-<p>描述了可执行文件数据段、代码段等各段的大小、虚拟地址、段对其、执行权限等。通过段头部表描绘了虚拟存储器运行时存储映像，比如每个unix程序的代码段总从虚拟地址的Ox0804800开始。</p>
-</li>
-<li><p>其他段</p>
-<p>和可重定位目标文件相同，但是完成了多个节的合并和重定位的工作</p>
-</li>
-</ul>
-<h5 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h5><ul>
-<li><p>克隆</p>
-<p>新程序的执行首先要父进程fork()得到一个子进程，该子进程除了pid等标识不同其他基本均与父进程相同。</p>
-</li>
-<li><p>重新映射</p>
-<p>当子进程执行自己的系统调用时，会先清空子进程现有的虚拟存储段(不再映射到父进程到各个段)，之后重新创建子进程虚拟存储器各段和可执行文件各段的映射。可理解为对复制进来的父进程页表进行重写，映射到外存中的各个段。</p>
-</li>
-<li><p>虚页调入</p>
-<p>加载器跳转到入口地址_start开始执行程序，接下来的过程需要配合虚拟存储器来完成。CPU获得了指令的虚拟地址后，若该指令不再内存中，则从外存中调入。</p>
-</li>
-</ul>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>协议细节</p>
 
           
         
@@ -2113,434 +3198,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/tx-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mark Zhan Zha">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="线上回滚日记 TEST">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/07/tx-01/" itemprop="url">线上回滚笔记-01</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T23:54:33+08:00">
-                2018-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/07/tx-01/" class="leancloud_visitors" data-flag-title="线上回滚笔记-01">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Linux-常用shell-指令"><a href="#Linux-常用shell-指令" class="headerlink" title="Linux 常用shell 指令"></a>Linux 常用shell 指令</h2><p>​    线上回滚笔记的第一篇，记一下这些天碰到和学到的Linux指令。入职以来，碰到很多开发环境和系统工具的学习和适应的过程，在越来越讲究效率的工程团队，Linux指令的熟悉层度可以很大的提高效率。无论在包下发，还是在线上环境测试，Shell指令，都可以很大的提升效率。</p>
-<ul>
-<li><h4 id="线上服务更新Shell指令"><a href="#线上服务更新Shell指令" class="headerlink" title="线上服务更新Shell指令"></a>线上服务更新Shell指令</h4></li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line">svr=`ps aux |grep <span class="string">'sso_proxy'</span> |grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span> |wc -l`</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$svr</span> -eq 0 ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> /etc/profile</span><br><span class="line"> 	/usr/<span class="built_in">local</span>/services/TSF3-PHP7-1.0/runtime/php/bin/php /data/web_deployment/svr/tsf2/sso_proxy_tcp/Start.php &amp;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    ps aux |grep <span class="string">'sso_proxy_tcp-master'</span> |grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span> | xargs  <span class="built_in">kill</span> -15</span><br><span class="line">    sleep 1</span><br><span class="line">    /usr/<span class="built_in">local</span>/services/TSF3-PHP7-1.0/runtime/php/bin/php /data/web_deployment/svr/tsf2/sso_proxy_tcp/Start.php &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>ps–Process Status(查看进程状态指令)</p>
-<ul>
-<li>ps aux 是常用指令兼容的效果比较高，使用BSD syntax显示所有进程的状态<ul>
-<li>ax一起使用是列出所有的状态</li>
-<li>u 做格式命令出现，表示输出采用面上用户的格式 </li>
-<li>兼容性比较好 在mac上一样的输出</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>grep–Global Regular Expression Print (全局正则表达式指令) 并把匹配的行打印出来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [option] pattren file</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>-v  == –revert-match 显示不包含匹配文本的所有行</p>
-</li>
-<li><p>正则</p>
-<blockquote>
-<ul>
-<li>元字符 “ \b”, “.”, “*”, “\d”<ol>
-<li>\bhi\b.*\bLucy\b 匹配hi单词 后不远有单词Lucy</li>
-<li>0\d{2}-\d{8} 匹配0后面2个数字 + 连字符 + 后面8位数字</li>
-</ol>
-</li>
-<li>常用的元字符 “^ 字符串的开始”、”$ 字符串的结束”、”\w 匹配数字或字母或下划线”、”\s 匹配任意空白符”、”. 匹配除换行符的任意字符”、 <ol>
-<li>^\d{5,8}$ 匹配5到8位长度的字符串</li>
-</ol>
-</li>
-<li>字符转义 –  www\.\.com = www..com</li>
-<li>重复 –  * 重复0次或多次| + 重复1次或多次| ?  重复0次或1次|{n}重复那次| {n,} 重复n次或者更多 |{n,m}重读n次到m次<ol>
-<li>Window\d+</li>
-<li>^\w+</li>
-</ol>
-</li>
-<li>字符集 – 建立自己的查找字符集进行匹配 [aeiou] 匹配一个元音字符 [.?!]匹配三个符号的任意一个 [0-9]等同于\d，[a-z0-9A-Z_]等同于\w<ol>
-<li>(?0\d{2}[) -]?\d{8} </li>
-</ol>
-</li>
-<li>分支条件–用|把不同的规则分隔开<ol>
-<li>0\d{2}-\d{8}|0\d{3}-\d{7}</li>
-<li>\(0\d{2}\)[-]?\d(8)|0\d{2}[-]?\d{8}</li>
-</ol>
-</li>
-<li>分组规则–重复多个字符，用小括号指定子表达式，然后指定子表达式的重复次数<ol>
-<li>(\d{1,3}\.){3}\d{1,3} ip地址的匹配格式，但存在不可能的IP地址</li>
-<li>((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}</li>
-</ol>
-</li>
-<li>反义– 查找不属于某个简单定义的字符类的字符 [\^x] 匹配除了x以外的任意字符[\^aeiou]匹配除了aeiou几个字符外的字符<ol>
-<li>\S+ 匹配不包含空白符的字符串 </li>
-<li>&lt;a/[/^-]+&gt;</li>
-</ol>
-</li>
-<li>后向引用 – <strong>匹配这个子表达式的文本</strong>(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理，后向引用用于重复搜索前面某个分组匹配的文本。例如，\1代表分组1匹配的文本。</li>
-<li>零宽断言 – 用于指定一个位置，这个位置应该满足一定的条件<ol>
-<li>\b\w+(?=ing\b) 用于匹配以ing结尾的ing前面的一部分<br> .  (?&lt;=\bre)\w+\b 用于匹配re开头的单词的后一部分    </li>
-</ol>
-</li>
-</ul>
-</blockquote>
-</li>
-<li><p>-h 只显示抓出来的行的内容，不显示文件名</p>
-</li>
-<li><p>-e 指定pattern</p>
-</li>
-<li><p>-l  只显示抓到指定模式内容的文件名</p>
-</li>
-<li><p>-n 显示抓到的文件的行数</p>
-</li>
-</ul>
-</li>
-<li><p>tcpdump — 抓包， 抓取网络中的通信包</p>
-<ol>
-<li>tcp ucp 指定抓包的类型</li>
-<li>host port 指定抓包的host或者端口号port</li>
-<li>-X 指定打印包的格式 详细的包内容</li>
-<li>-i  指定网卡</li>
-</ol>
-<p>​    </p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/tx-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mark Zhan Zha">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="线上回滚日记 TEST">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/07/tx-02/" itemprop="url">线上回滚笔记-02</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T23:54:33+08:00">
-                2018-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/07/tx-02/" class="leancloud_visitors" data-flag-title="线上回滚笔记-02">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="DSN-Data-source-name-初探"><a href="#DSN-Data-source-name-初探" class="headerlink" title="DSN(Data source name)  初探"></a>DSN(Data source name)  初探</h2><p>​    最近的服务需要到MySql中进行增删查改，数据库一直是自己的弱项，碰巧这个机会，好好补补这方面的知识点。第一步，链接数据库的地址，ip地址、端口、账号、密码和数据库名都给你了，怎么去组织这些字段，当然google都会有答案，更好的方式是彻底的理解。</p>
-<p>​    维基百科(<a href="https://en.wikipedia.org/wiki/Data_source_name),给出的答案是：In" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Data_source_name),给出的答案是：In</a> <a href="https://en.wikipedia.org/wiki/Computing" target="_blank" rel="noopener">computing</a>, a <strong>data source name</strong>  is a string that has an associated <a href="https://en.wikipedia.org/wiki/Data_structure" target="_blank" rel="noopener">data structure</a> used to describe a connection to a data source. 并且主要用于开放数据库的连接和Java数据库的连接。从用途和语言的角度，DSN的形式千变万化，但是主要作用都是对数据源进行连接，数据源可以是文件、数据库、系统和用户等。也可以在任意的语言形式中使用。</p>
-<p>The Data Source Name has a common format, like e.g. <a href="http://pear.php.net/manual/en/package.database.db.intro-dsn.php" target="_blank" rel="noopener">PEAR DB</a> uses it, but without type-prefix (optional parts marked by squared brackets):</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[username[:password]@][protocol[(address)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</span><br></pre></td></tr></table></figure>
-<p>A DSN in its fullest form:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username:password@protocol(address)/dbname?param=value</span><br></pre></td></tr></table></figure>
-<p>Except for the databasename, all values are optional.</p>
-<p>常用实例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user@unix(/path/to/socket)/dbname?charset=utf8</span><br><span class="line">user:password@tcp(localhost:5555)/dbname?charset=utf8</span><br><span class="line">user:password@/dbname</span><br><span class="line">user:password@tcp([de:ad:be:ef::ca:fe]:80)/dbname</span><br></pre></td></tr></table></figure>
-<p>Ref: <a href="https://github.com/go-sql-driver/mysql" target="_blank" rel="noopener">https://github.com/go-sql-driver/mysql</a> </p>
-<h2 id="使用MySQL数据库"><a href="#使用MySQL数据库" class="headerlink" title="使用MySQL数据库"></a>使用MySQL数据库</h2><p>go中使用mysql的基本方式, 包括增删查改。使用模式基本为：</p>
-<ol>
-<li>stmt, err := db.Prepare() 建立基本连接</li>
-<li>res, err := stmt.Exec() 执行基本操作，输入参数填入第一步sql语句的洞中</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;database/sql&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	//&quot;time&quot;</span><br><span class="line"></span><br><span class="line">	_ &quot;github.com/go-sql-driver/mysql&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	db, err := sql.Open(&quot;mysql&quot;, &quot;astaxie:astaxie@/test?charset=utf8&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	//插入数据</span><br><span class="line">	stmt, err := db.Prepare(&quot;INSERT userinfo SET username=?,department=?,created=?&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	res, err := stmt.Exec(&quot;astaxie&quot;, &quot;研发部门&quot;, &quot;2012-12-09&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	id, err := res.LastInsertId()</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	fmt.Println(id)</span><br><span class="line">	//更新数据</span><br><span class="line">	stmt, err = db.Prepare(&quot;update userinfo set username=? where uid=?&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	res, err = stmt.Exec(&quot;astaxieupdate&quot;, id)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	affect, err := res.RowsAffected()</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	fmt.Println(affect)</span><br><span class="line"></span><br><span class="line">	//查询数据</span><br><span class="line">	rows, err := db.Query(&quot;SELECT * FROM userinfo&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	for rows.Next() &#123;</span><br><span class="line">		var uid int</span><br><span class="line">		var username string</span><br><span class="line">		var department string</span><br><span class="line">		var created string</span><br><span class="line">		err = rows.Scan(&amp;uid, &amp;username, &amp;department, &amp;created)</span><br><span class="line">		checkErr(err)</span><br><span class="line">		fmt.Println(uid)</span><br><span class="line">		fmt.Println(username)</span><br><span class="line">		fmt.Println(department)</span><br><span class="line">		fmt.Println(created)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//删除数据</span><br><span class="line">	stmt, err = db.Prepare(&quot;delete from userinfo where uid=?&quot;)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	res, err = stmt.Exec(id)</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	affect, err = res.RowsAffected()</span><br><span class="line">	checkErr(err)</span><br><span class="line"></span><br><span class="line">	fmt.Println(affect)</span><br><span class="line"></span><br><span class="line">	db.Close()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkErr(err error) &#123;</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		panic(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2590,7 +3252,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2603,7 +3265,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
